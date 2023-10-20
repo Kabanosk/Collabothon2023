@@ -1,7 +1,8 @@
-from alembic import context
 from dotenv import load_dotenv
-from src.database.tables import metadata
+
+from alembic import context
 from src.database.connector import connect_with_connector_auto_iam_authn
+from src.database.tables import metadata
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -58,9 +59,7 @@ def run_migrations_online() -> None:
     connectable = connect_with_connector_auto_iam_authn()
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()
