@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, String, Table, MetaData
 
 metadata = MetaData()
 
-User = Table(
-    "users",
+Users = Table(
+    "Users",
     metadata,
     Column("id", Integer, primary_key=True),
     Column("username", String, nullable=False),
