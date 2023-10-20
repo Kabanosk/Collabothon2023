@@ -1,6 +1,9 @@
 fastapi~=0.85.0
 uvicorn
 jinja2
+numpy
+scikit-learn
+dotenv
 python-dotenv
 sqlalchemy
 pg8000
