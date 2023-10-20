@@ -80,7 +80,4 @@ def connect_with_connector_auto_iam_authn() -> sqlalchemy.engine.base.Engine:
     )
     return pool
 
-
-# p = connect_with_connector_auto_iam_authn()
-# p.connect()
 # [END cloud_sql_postgres_sqlalchemy_auto_iam_authn]
