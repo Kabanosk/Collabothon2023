@@ -1,3 +1,6 @@
 # Collabothon2023
+## How to run it?
 
-## Random words
+1. `docker build -t app .`
+2. `docker run --name app_container -p 80:80 app`
+3. Go to http://0.0.0.0:80
