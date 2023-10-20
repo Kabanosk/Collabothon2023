@@ -55,10 +55,3 @@ def compute_score(my_trees, my_flowers, my_bushes, my_houseplants):
 @app.get("/")
 def main():
     return {"success": True}
-
-
-from .database.connector import connect_with_connector_auto_iam_authn
-
-
-def create_app():
-    app = FastAPI()
