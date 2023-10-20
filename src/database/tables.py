@@ -1,10 +1,13 @@
 import sqlalchemy as sa
 from sqlalchemy.orm import DeclarativeBase, relationship
 
+
 class Base(DeclarativeBase):
     pass
 
+
 metadata = Base.metadata
+
 
 class User(Base):
     __tablename__ = "User"

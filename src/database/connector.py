@@ -15,12 +15,13 @@
 # [START cloud_sql_postgres_sqlalchemy_auto_iam_authn]
 import os
 
-from google.cloud.sql.connector import Connector, IPTypes
 import pg8000
-from dotenv import load_dotenv
 import sqlalchemy
+from dotenv import load_dotenv
+from google.cloud.sql.connector import Connector, IPTypes
 
 load_dotenv()
+
 
 def connect_with_connector_auto_iam_authn() -> sqlalchemy.engine.base.Engine:
     """
@@ -34,7 +35,7 @@ def connect_with_connector_auto_iam_authn() -> sqlalchemy.engine.base.Engine:
     # keep secrets safe.
     instance_connection_name = os.getenv(
         "INSTANCE_CONNECTION_NAME"
-        )  # e.g. 'project:region:instance'
+    )  # e.g. 'project:region:instance'
     db_user = os.getenv("DB_USER")  # e.g. 'sa-name@project-id.iam'
     db_password = os.getenv("DB_PASSWORD")
     db_name = os.getenv("DB_NAME")  # e.g. 'my-database'
@@ -79,5 +80,6 @@ def connect_with_connector_auto_iam_authn() -> sqlalchemy.engine.base.Engine:
         # [END_EXCLUDE]
     )
     return pool
+
 
 # [END cloud_sql_postgres_sqlalchemy_auto_iam_authn]

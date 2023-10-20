@@ -1,5 +1,6 @@
-import sqlalchemy
 from dataclasses import dataclass
+
+import sqlalchemy
 
 
 @dataclass
@@ -14,11 +15,3 @@ class User:
 
     def add_image(self):
         pass
-
-
-
-
-
-
-
-
