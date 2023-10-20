@@ -1,7 +1,7 @@
 from alembic import context
 from dotenv import load_dotenv
-from database.tables import metadata
-from database.connector import connect_with_connector_auto_iam_authn
+from src.database.tables import metadata
+from src.database.connector import connect_with_connector_auto_iam_authn
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
