@@ -35,10 +35,11 @@ def connect_with_connector_auto_iam_authn() -> sqlalchemy.engine.base.Engine:
     instance_connection_name = os.getenv(
         "INSTANCE_CONNECTION_NAME"
         )  # e.g. 'project:region:instance'
-    db_iam_user = os.getenv("DB_IAM_USER")  # e.g. 'sa-name@project-id.iam'
+    db_user = os.getenv("DB_USER")  # e.g. 'sa-name@project-id.iam'
+    db_password = os.getenv("DB_PASSWORD")
     db_name = os.getenv("DB_NAME")  # e.g. 'my-database'
 
-    ip_type = IPTypes.PRIVATE if os.getenv("PRIVATE_IP") else IPTypes.PUBLIC
+    ip_type = IPTypes.PUBLIC
 
     # initialize Cloud SQL Python Connector object
     connector = Connector()
@@ -47,9 +48,10 @@ def connect_with_connector_auto_iam_authn() -> sqlalchemy.engine.base.Engine:
         conn: pg8000.dbapi.Connection = connector.connect(
             instance_connection_name,
             "pg8000",
-            user=db_iam_user,
+            user=db_user,
+            password=db_password,
             db=db_name,
-            enable_iam_auth=True,
+            enable_iam_auth=False,
             ip_type=ip_type,
         )
         return conn
@@ -78,5 +80,6 @@ def connect_with_connector_auto_iam_authn() -> sqlalchemy.engine.base.Engine:
     )
     return pool
 
-
+p = connect_with_connector_auto_iam_authn()
+p.connect()
 # [END cloud_sql_postgres_sqlalchemy_auto_iam_authn]

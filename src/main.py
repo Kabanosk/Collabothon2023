@@ -1,8 +1,8 @@
 from fastapi import FastAPI
+from .database.connector import connect_with_connector_auto_iam_authn
 
-app = FastAPI()
+def create_app():
+    app = FastAPI()
 
 
-@app.get('/')
-def main():
-    return {'success': True}
+
