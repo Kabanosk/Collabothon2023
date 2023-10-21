@@ -32,7 +32,7 @@ def register_user(request: Request, email: str = Form(""), username: str = Form(
         })
 
     if new_user:
-        return templates.TemplateResponse('login.html', {'request': request, 'message': 'User exists'})
+        return templates.TemplateResponse('register.html', {'request': request, 'message': 'User exists'})
 
     ph = PasswordHasher()
     h_pass = ph.hash(password)
