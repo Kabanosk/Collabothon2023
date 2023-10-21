@@ -1,7 +1,6 @@
-from sqlalchemy import insert, select, update
-
 from connector import connect_with_connector
-from tables import Inventory, Photo, Plant, User, Badges, Model
+from sqlalchemy import insert, select, update
+from tables import Badges, Inventory, Model, Photo, Plant, User
 
 pool = connect_with_connector()
 
@@ -116,4 +115,3 @@ def add_model(blob):
         )
         conn.execute(query)
         conn.commit()
-
