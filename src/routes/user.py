@@ -22,14 +22,14 @@ def auth_required(f):
 
 @router.get('/')
 def profile(request: Request):
-    return templates.TemplateResponse("profile.html", {"request": request})
+    return templates.TemplateResponse("profile/main.html", {"request": request})
 
 
 @router.get('/stats')
 def profile_stats(request: Request):
-    return templates.TemplateResponse("profile_stats.html", {"request": request})
+    return templates.TemplateResponse("profile/stats.html", {"request": request})
 
 
 @router.get('/badges')
 def profile_badges(request: Request):
-    return templates.TemplateResponse("profile_badges.html", {"request": request})
+    return templates.TemplateResponse("profile/badges.html", {"request": request})
