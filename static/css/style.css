@@ -422,12 +422,22 @@ a
 	font-size: 18px;
 }
 
+.navigation #brand img
+{
+	display: inline-block;
+	/* font-size: 3.7rem; */
+	position: relative;
+	top: -20px;
+	left: -35px;
+}
+
 .navigation #brand p
 {
 	display: inline-block;
 	font-size: 3.7rem;
 	position: relative;
 	top: -35px;
+	left: -40px;
 }
 
 .navigation #brand a
@@ -445,8 +455,9 @@ a
 .navigation #menu
 {
 	float: left;
-	right: 40px;
-	/* position: fixed; */
+	display: block;
+	right: 10px;
+	position: relative;
 }
 
 .navigation #menu li
