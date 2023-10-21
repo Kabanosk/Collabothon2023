@@ -330,7 +330,7 @@ h1
 #showcase img
 {
 	cursor: pointer;
-	opacity: 0.6;
+	opacity: .6;
 }
 
 #item-title
@@ -356,7 +356,7 @@ h1
 	color: #fff;
 	font-size: 1.5rem;
 	text-align: center;
-	background: #841839;
+	background: rgba(19, 199, 184, 0.726);
 	border: none;
 	cursor: pointer;
 	border-radius: 40px;
@@ -370,6 +370,130 @@ h1
 	outline: none;
 }
 
+a
+{
+	text-decoration: none !important;
+	color: #fff !important;
+}
+
+.cool-link::after
+{
+	content: '';
+	display: block;
+	width: 0;
+	height: 2.3px;
+	background: #fff;
+	transition: width .3s;
+}
+
+.cool-link:hover::after
+{
+	width: 100%;
+	transition: width .3s;
+}
+
+.navigation
+{
+	/* width: 100%; */
+	width: 50%;
+	height: 80px;
+	position: fixed;
+	/* left: -100px; */
+	z-index: 110;
+	background: #161616;
+}
+
+/* .navigation.scrolled */
+/* { */
+	/* background-color: #161616 !important; */
+	/* transition: background-color 500ms linear; */
+/* } */
+
+.navigation #brand
+{
+	float: left;
+	display: block;
+	margin-left: 40px;
+	line-height: 80px;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 18px;
+}
+
+.navigation #brand p
+{
+	display: inline-block;
+	font-size: 3.7rem;
+	position: relative;
+	top: -35px;
+}
+
+.navigation #brand a
+{
+	color: #fff;
+	font-family:'Poppins' !important;
+	transition: all 500ms ease-out;
+}
+
+.navigation #brand a:hover
+{
+	text-decoration: none;
+}
+
+.navigation #menu
+{
+	float: left;
+	right: 40px;
+	position: fixed;
+}
+
+.navigation #menu li
+{
+	padding-left: 40px;
+	display: inline-block;
+	font-weight: lighter !important;
+	text-transform: uppercase;
+	font-size: 2.5rem;
+	/* line-height: 80px; */
+	position: relative;
+	top: -30px;
+	transition: all 500ms ease-out;
+	transform: translateY(95%);
+}
+
+.navigation #menu li a
+{
+	font-family: 'Poppins' !important;
+	color: #999 !important;
+	transition: all 500ms ease-out;
+}
+
+.navigation #menu li a:hover
+{
+	text-decoration: none;
+	color: #fff !important;
+	transition: all 500ms ease-out;
+}
+
+.close-btn
+{
+	position: absolute;
+	right: 30px;
+	font-weight: 300;
+	font-size: 1.7rem;
+	color: #999;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	z-index: 3;
+	line-height: 80px;
+}
+
+.close-btn:hover
+{
+	cursor: pointer;
+	color: #fff;
+	letter-spacing: 3px;
+}
 
 @keyframes ellipseRotate
 {
