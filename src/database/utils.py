@@ -94,7 +94,7 @@ def add_user_badge(blob, user_id):
 def get_user_badge(user_id):
     with pool.connect() as conn:
         query = (
-            select(Badges.blob)
+            select(Badges.path)
             .join(UsersBadges, UsersBadges.blob_id == Badges.id)
             .join(User, User.id == UsersBadges.user_id)
         )
