@@ -52,8 +52,8 @@ def register_user(
     new_user = get_user_by_username(username)
 
     model = request.session.get("model")
-    n = model.data.shape[1]
     if model:
+        n = model.data.shape[1]
         request.state.model = model.add_user(np.zeros((n,)))
     else:
         request.state.model = get_model(data_for_model())
