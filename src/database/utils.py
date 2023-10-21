@@ -65,6 +65,14 @@ def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=
         conn.commit()
 
 
+def get_all_plants_from_db():
+    with pool.connect() as conn:
+        query = select(Plant)
+        ans = conn.execute(query).fetchall()
+        conn.commit()
+        return ans
+
+
 def data_for_model():
     with pool.connect() as conn:
         query = select(User.id, Inventory.plant_id).join(User, User.id == Inventory.user_id)

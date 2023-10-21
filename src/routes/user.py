@@ -1,7 +1,12 @@
 from functools import wraps
 
-from fastapi import APIRouter, Request
+import numpy as np
+from fastapi import APIRouter, Request, status
+from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
+
+from model import Model
+from database.utils import get_all_plants_from_db
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
@@ -24,7 +29,23 @@ def auth_required(f):
 
 @router.get("/")
 def profile(request: Request):
-    return templates.TemplateResponse("profile/main.html", {"request": request})
+    model = Model.load()
+    user = request.session.get("user")
+    if not user:
+        return RedirectResponse('/login', status_code=status.HTTP_303_SEE_OTHER)
+    user_vec = model.data[user['id']]
+    recommended_users = model.get_recommended_users(user_vec)
+
+    recommended_plants_id = (
+        set(x for x in [np.nonzero(model.data[u]) for u in recommended_users]).difference(
+            set(np.nonzero(user_vec))))
+    plants = np.array(get_all_plants_from_db())
+    recommended_plants = plants[recommended_plants_id]
+
+    return templates.TemplateResponse("profile/main.html", {
+        "request": request,
+        'recommended_plants': recommended_plants
+    })
 
 
 @router.get("/stats")

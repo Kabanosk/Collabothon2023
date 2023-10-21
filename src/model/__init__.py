@@ -14,5 +14,6 @@ def get_model(sql_data) -> Model:
 
     count_vectorizer = CountVectorizer(token_pattern=r'\b\d+\b')
     data_matrix = count_vectorizer.fit_transform(x_text).toarray()
-
-    return Model(data_matrix)
+    for i, k in enumerate(data):
+        data[k] = data_matrix[i]
+    return Model(data)
