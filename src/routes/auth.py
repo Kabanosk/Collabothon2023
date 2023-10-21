@@ -22,10 +22,10 @@ def get_register_page(request: Request):
 def register_user(request: Request, email: str = Form(""), username: str = Form(""), password: str = Form("")):
     new_user = get_user_by_username(username)
 
-    if not valid_email(username):
-        return templates.TemplateResponse('login.html', {'request': request, 'message': 'Email not valid'})
+    if not valid_email(email):
+        return templates.TemplateResponse('register.html', {'request': request, 'message': 'Email not valid'})
     if not valid_password(password):
-        return templates.TemplateResponse('login.html', {
+        return templates.TemplateResponse('register.html', {
             'request': request,
             'message': 'Password must contains at least 8 characters, one letter, one number '
                        'and one special character from "@$!%*#?&"'
