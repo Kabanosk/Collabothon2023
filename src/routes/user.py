@@ -21,15 +21,15 @@ def auth_required(f):
     return check_session
 
 
-@router.get('/profile')
+@router.get('/')
 def profile(request: Reqeust):
     return templates.TemplateResponses("profile.html",{"request":request})
 
-@router.get('/profile/stats')
+@router.get('/stats')
 def profile_stats(request: Request):
     return templates.TemplateResponses("profile_stats.html",{"request",request})
 
-@router.get('/profile/badges')
+@router.get('/badges')
 def profile_badges(request: Request):
     return templates.TemplateResponses("profile_badges.html",{"request",request})
 
