@@ -1,22 +1,24 @@
+import numpy as np
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
 from fastapi import APIRouter, Request, Form, status
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from src.validation import valid_email, valid_password
-from src.database.utils import get_user_by_username, add_user
+from database.utils import get_user_by_username, add_user, data_for_model
+from model import get_model
+from validation import valid_email, valid_password
 
 router = APIRouter()
-templates = Jinja2Templates(directory="src/templates")
+templates = Jinja2Templates(directory="templates")
 
 
-@router.get("/register")
+@router.get("/register", response_class=HTMLResponse)
 def get_register_page(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
 
 
-@router.post("/register")
+@router.post("/register", response_class=HTMLResponse)
 def register_user(request: Request, email: str = Form(""), username: str = Form(""), password: str = Form("")):
     new_user = get_user_by_username(username)
 
@@ -37,6 +39,13 @@ def register_user(request: Request, email: str = Form(""), username: str = Form(
     add_user(username, email, h_pass)
     new_user = get_user_by_username(username)
 
+    model = request.session.get("model")
+    n = model.data.shape[1]
+    if model:
+        request.session["model"] = model.add_user(np.zeros((n,)))
+    else:
+        request.session["model"] = get_model(data_for_model())
+
     request.session["user"] = {
         'id': new_user[0],
         'username': new_user[1],
@@ -44,15 +53,15 @@ def register_user(request: Request, email: str = Form(""), username: str = Form(
         'password': new_user[3],
         'inventory': new_user[4]
     }
-    return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse("/register", status_code=status.HTTP_303_SEE_OTHER)
 
 
-@router.get("/login")
+@router.get("/login", response_class=HTMLResponse)
 def get_login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
 
-@router.post("/login")
+@router.post("/login", response_class=HTMLResponse)
 def login_user(request: Request, username: str = Form(""), password: str = Form("")):
     user = get_user_by_username(username)
     if not user:

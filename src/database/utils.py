@@ -1,7 +1,7 @@
-from connector import connect_with_connector_auto_iam_authn
 from sqlalchemy import insert, select
-from tables import User, Inventory, Plant, Photo
-# from model import get_model
+
+from .connector import connect_with_connector_auto_iam_authn
+from .tables import User, Inventory, Plant, Photo
 
 pool = connect_with_connector_auto_iam_authn()
 
