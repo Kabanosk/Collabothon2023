@@ -1,9 +1,9 @@
 from sqlalchemy import insert, select
 
-from .connector import connect_with_connector_auto_iam_authn
-from .tables import User, Inventory, Plant, Photo
+from database.connector import connect_with_connector
+from database.tables import User, Inventory, Plant, Photo
 
-pool = connect_with_connector_auto_iam_authn()
+pool = connect_with_connector()
 
 
 def get_user_by_username(username: str):

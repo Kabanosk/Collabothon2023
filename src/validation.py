@@ -9,7 +9,7 @@ def valid_email(email: str):
 
 
 def valid_password(password: str):
-    pattern = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+    pattern = "(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
     if re.match(pattern, password):
         return True
     return False
