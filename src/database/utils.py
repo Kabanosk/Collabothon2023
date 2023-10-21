@@ -1,7 +1,7 @@
 from sqlalchemy import insert, select
 
 from database.connector import connect_with_connector
-from database.tables import User, Inventory, Plant, Photo
+from database.tables import Inventory, Photo, Plant, User
 
 pool = connect_with_connector()
 
@@ -43,7 +43,7 @@ def add_plant(name, co, formula):
 def add_photo(blob):
     with pool.connect() as conn:
         query = insert(Photo).values(
-           blob=blob,
+            blob=blob,
         )
         conn.execute(query)
         conn.commit()

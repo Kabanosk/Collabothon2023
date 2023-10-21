@@ -11,3 +11,4 @@ alembic
 argon2-cffi
 python-multipart
 starlette
+itsdangerous
