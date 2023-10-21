@@ -57,3 +57,10 @@ class Badges(Base):
     id = sa.Column(sa.Integer, primary_key=True)
     blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)
     user_id = sa.Column(sa.Integer, sa.ForeignKey("User.id"), nullable=False)
+
+
+class Model(Base):
+    __tablename__ = "Model"
+
+    id = sa.Column(sa.Integer, primary_key=True)
+    blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)

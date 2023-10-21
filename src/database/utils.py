@@ -1,7 +1,7 @@
-from sqlalchemy import insert, select
+from sqlalchemy import insert, select, update
 
 from connector import connect_with_connector
-from tables import Inventory, Photo, Plant, User, Badges
+from tables import Inventory, Photo, Plant, User, Badges, Model
 
 pool = connect_with_connector()
 
@@ -91,3 +91,19 @@ def get_badge(user_id):
         conn.commit()
 
     return ans
+
+
+def get_model():
+    with pool.connect() as conn:
+        query = select(Model.blob)
+        ans = conn.execute(query).fetchall()
+        conn.commit()
+
+    return ans
+
+
+def update_model(blob):
+    with pool.connect() as conn:
+        query = update(Model.blob).where(Model.id == 1)
+        conn.execute(query)
+        conn.commit()
