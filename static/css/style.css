@@ -520,3 +520,47 @@ a
 		transform: rotate(360deg);
 	}
 }
+
+.badge-group
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	height: 30vh;
+	margin: 20px; 
+}
+  
+.badge-group h2 {
+	font-size: 24px;
+	margin: 10px 0;
+}
+
+.oval-badge {
+	background-color: #3498db;
+	color: #fff;
+	border-radius: 20px;
+	padding: 20px;
+	margin: 10px 0;
+	text-align: center;
+	font-size: 24px; 
+	width: 800px;
+	height: 80px;
+}
+
+.badge-group ul {
+	list-style: none;
+	padding: 0;
+}
+
+.badge-content {
+	display: flex;
+	align-items:baseline;
+	justify-content: flex-start;
+  }
+
+.left-aligned {
+	margin-right: 10px;
+	float: left;
+}
+  
