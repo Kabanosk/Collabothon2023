@@ -12,7 +12,7 @@ def get_user_by_username(username: str):
         query = select(User).where(User.username == username)
         result = conn.execute(query).fetchone()
 
-        return result
+    return result
 
 
 def get_user_by_email(email: str):
@@ -25,7 +25,11 @@ def get_user_by_email(email: str):
 def add_user(username, email, password, score, country=None):
     with pool.connect() as conn:
         query = insert(User).values(
-            username=username, password=password, email=email, score=score, country=country,
+            username=username,
+            password=password,
+            email=email,
+            score=score,
+            country=country,
         )
         conn.execute(query)
 
@@ -140,3 +144,11 @@ def get_all_plants_from_db():
         conn.commit()
 
     return ans
+
+
+def get_plant_by_name(name: str):
+    with pool.connect() as conn:
+        query = select(Plant).where(Plant.name == name)
+        result = conn.execute(query).fetchone()
+
+    return result

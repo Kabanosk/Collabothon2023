@@ -6,6 +6,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from database.utils import add_user, data_for_model, get_user_by_username
+
 # from model import get_model
 from validation import valid_email, valid_password
 
