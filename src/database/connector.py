@@ -1,18 +1,3 @@
-# Copyright 2022 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-# [START cloud_sql_postgres_sqlalchemy_auto_iam_authn]
 import os
 
 import pg8000
@@ -23,7 +8,7 @@ from google.cloud.sql.connector import Connector, IPTypes
 load_dotenv()
 
 
-def connect_with_connector_auto_iam_authn() -> sqlalchemy.engine.base.Engine:
+def connect_with_connector() -> sqlalchemy.engine.base.Engine:
     """
     Initializes a connection pool for a Cloud SQL instance of Postgres.
 
@@ -80,6 +65,3 @@ def connect_with_connector_auto_iam_authn() -> sqlalchemy.engine.base.Engine:
         # [END_EXCLUDE]
     )
     return pool
-
-
-# [END cloud_sql_postgres_sqlalchemy_auto_iam_authn]
