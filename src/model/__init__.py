@@ -10,9 +10,9 @@ def get_model(sql_data) -> Model:
             data[el[0]].append(str(el[1]))
         else:
             data[el[0]] = [str(el[1])]
-    x_text = [' '.join(sublist) for sublist in data.values()]
+    x_text = [" ".join(sublist) for sublist in data.values()]
 
-    count_vectorizer = CountVectorizer(token_pattern=r'\b\d+\b')
+    count_vectorizer = CountVectorizer(token_pattern=r"\b\d+\b")
     data_matrix = count_vectorizer.fit_transform(x_text).toarray()
     for i, k in enumerate(data):
         data[k] = data_matrix[i]

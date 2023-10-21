@@ -53,7 +53,7 @@ def register_user(
         "id": new_user[0],
         "username": new_user[1],
         "email": new_user[2],
-        "password": new_user[3]
+        "password": new_user[3],
     }
     return RedirectResponse("/login", status_code=status.HTTP_303_SEE_OTHER)
 
@@ -85,7 +85,7 @@ def login_user(request: Request, username: str = Form(""), password: str = Form(
         "id": user[0],
         "username": user[1],
         "email": user[2],
-        "password": user[3]
+        "password": user[3],
     }
     return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 

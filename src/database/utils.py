@@ -1,6 +1,8 @@
 import datetime
-from .connector import connect_with_connector
+
 from sqlalchemy import insert, select, update
+
+from .connector import connect_with_connector
 from .tables import Badges, Inventory, Photo, Plant, User, UsersBadges
 
 pool = connect_with_connector()
@@ -72,7 +74,8 @@ def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=
 def data_for_model():
     with pool.connect() as conn:
         query = select(User.id, Inventory.plant_id).join(
-            User, User.id == Inventory.user_id)
+            User, User.id == Inventory.user_id
+        )
         ans = conn.execute(query).fetchall()
         conn.commit()
     return ans

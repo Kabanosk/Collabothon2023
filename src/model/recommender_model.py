@@ -29,4 +29,4 @@ class Model:
 
     @classmethod
     def load(cls):
-        return joblib.load('model.pkl')
+        return joblib.load("model.pkl")
