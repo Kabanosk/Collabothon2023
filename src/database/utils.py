@@ -103,10 +103,11 @@ def get_user_badge(user_id):
     return ans
 
 
-def add_badge_to_db(blob):
+def add_badge_to_db(blob, name):
     with pool.connect() as conn:
         query = insert(Badges).values(
             blob=blob,
+            description=name,
         )
         conn.execute(query)
         conn.commit()

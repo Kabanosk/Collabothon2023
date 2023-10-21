@@ -74,4 +74,5 @@ class Badges(Base):
 
     id = sa.Column(sa.Integer, primary_key=True)
     blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)
+    description = sa.Column(sa.String(150), nullable=False)
     usersbadges = relationship("UsersBadges")
