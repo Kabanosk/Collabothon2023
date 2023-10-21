@@ -1,7 +1,7 @@
 import datetime
 from .connector import connect_with_connector
 from sqlalchemy import insert, select, update
-from .tables import Badges, Inventory, Model, Photo, Plant, User, UsersBadges
+from .tables import Badges, Inventory, Photo, Plant, User, UsersBadges
 
 pool = connect_with_connector()
 
