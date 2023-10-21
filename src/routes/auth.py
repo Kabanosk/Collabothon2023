@@ -1,12 +1,10 @@
-import numpy as np
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
 from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from database.utils import add_user, data_for_model, get_user_by_username
-# from model import get_model
+from database.utils import add_user, get_user_by_username
 from validation import valid_email, valid_password
 
 router = APIRouter()
@@ -51,19 +49,11 @@ def register_user(
     add_user(username, email, h_pass, 0)
     new_user = get_user_by_username(username)
 
-    # model = request.session.get("model")
-    # n = model.data.shape[1]
-    # if model:
-    #     request.state.model = model.add_user(np.zeros((n,)))
-    # else:
-    #     request.state.model = get_model(data_for_model())
-
     request.state.user = {
         "id": new_user[0],
         "username": new_user[1],
         "email": new_user[2],
-        "password": new_user[3],
-        # 'inventory': new_user[4]
+        "password": new_user[3]
     }
     return RedirectResponse("/login", status_code=status.HTTP_303_SEE_OTHER)
 
