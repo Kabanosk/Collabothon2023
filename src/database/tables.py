@@ -48,3 +48,10 @@ class Photo(Base):
     id = sa.Column(sa.Integer, primary_key=True)
     blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)
     inventory = relationship("Inventory")
+
+
+class Model(Base):
+    __tablename__ = "Model"
+
+    id = sa.Column(sa.Integer, primary_key=True)
+    blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)

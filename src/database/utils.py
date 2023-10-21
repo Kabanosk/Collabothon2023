@@ -1,7 +1,7 @@
-from sqlalchemy import insert, select
+from sqlalchemy import insert, select, update
 
 from database.connector import connect_with_connector
-from database.tables import Inventory, Photo, Plant, User
+from database.tables import Inventory, Photo, Plant, User, Model
 
 pool = connect_with_connector()
 
@@ -72,3 +72,28 @@ def data_for_model():
         conn.commit()
 
     return ans
+
+
+def get_model():
+    with pool.connect() as conn:
+        query = select(Model.blob)
+        ans = conn.execute(query).fetchall()
+        conn.commit()
+
+    return ans
+
+
+def update_model(blob):
+    with pool.connect() as conn:
+        query = update(Model.blob).where(Model.id == 1)
+        conn.execute(query)
+        conn.commit()
+
+
+def add_model(blob):
+    with pool.connect() as conn:
+        query = insert(Model).values(
+            blob=blob,
+        )
+        conn.execute(query)
+        conn.commit()
