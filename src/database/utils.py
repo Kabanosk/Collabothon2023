@@ -113,31 +113,6 @@ def add_badge_to_db(blob, name):
         conn.commit()
 
 
-def get_model():
-    with pool.connect() as conn:
-        query = select(Model.blob)
-        ans = conn.execute(query).fetchall()
-        conn.commit()
-
-    return ans
-
-
-def update_model(blob):
-    with pool.connect() as conn:
-        query = update(Model.blob).where(Model.id == 1)
-        conn.execute(query)
-        conn.commit()
-
-
-def add_model(blob):
-    with pool.connect() as conn:
-        query = insert(Model).values(
-            blob=blob,
-        )
-        conn.execute(query)
-        conn.commit()
-
-
 def get_all_plants_from_db():
     with pool.connect() as conn:
         query = select(Plant)
