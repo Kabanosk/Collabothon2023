@@ -18,14 +18,14 @@ def get_user_by_email(email: str):
     with pool.connect() as conn:
         query = select(User).where(User.email == email)
         result = conn.execute(query).fetchone()
-
-        return result
+    return result
 
 
 def add_user(username, email, password):
     with pool.connect() as conn:
         query = insert(User).values(username=username, password=password, email=email)
         conn.execute(query)
+
         conn.commit()
 
 
