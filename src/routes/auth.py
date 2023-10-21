@@ -4,7 +4,7 @@ from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from database.utils import add_user, get_user_by_username
+from database.utils import add_user, data_for_model, get_user_by_username
 from validation import valid_email, valid_password
 
 router = APIRouter()
@@ -85,8 +85,7 @@ def login_user(request: Request, username: str = Form(""), password: str = Form(
         "id": user[0],
         "username": user[1],
         "email": user[2],
-        "password": user[3],
-        # 'inventory': user[4]
+        "password": user[3]
     }
     return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 

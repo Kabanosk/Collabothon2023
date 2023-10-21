@@ -1,7 +1,7 @@
+import datetime
+from .connector import connect_with_connector
 from sqlalchemy import insert, select, update
-
-from database.connector import connect_with_connector
-from database.tables import Inventory, Photo, Plant, User, Model
+from .tables import Badges, Inventory, Photo, Plant, User, UsersBadges
 
 pool = connect_with_connector()
 
@@ -10,8 +10,7 @@ def get_user_by_username(username: str):
     with pool.connect() as conn:
         query = select(User).where(User.username == username)
         result = conn.execute(query).fetchone()
-
-        return result
+    return result
 
 
 def get_user_by_email(email: str):
@@ -21,10 +20,14 @@ def get_user_by_email(email: str):
     return result
 
 
-def add_user(username, email, password, score):
+def add_user(username, email, password, score, country=None):
     with pool.connect() as conn:
         query = insert(User).values(
-            username=username, password=password, email=email, score=score
+            username=username,
+            password=password,
+            email=email,
+            score=score,
+            country=country,
         )
         conn.execute(query)
 
@@ -57,6 +60,7 @@ def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=
             user_id=user_id,
             plant_id=plant_id,
             photo_id=photo_id,
+            creation_date=datetime.datetime.now(),
             weight=weight,
             age=age,
             height=height,
@@ -65,21 +69,45 @@ def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=
         conn.commit()
 
 
-def get_all_plants_from_db():
-    with pool.connect() as conn:
-        query = select(Plant)
-        ans = conn.execute(query).fetchall()
-        conn.commit()
-        return ans
-
-
 def data_for_model():
     with pool.connect() as conn:
-        query = select(User.id, Inventory.plant_id).join(User, User.id == Inventory.user_id)
+        query = select(User.id, Inventory.plant_id).join(
+            User, User.id == Inventory.user_id)
         ans = conn.execute(query).fetchall()
         conn.commit()
-
     return ans
+
+
+def add_user_badge(blob, user_id):
+    with pool.connect() as conn:
+        query = insert(UsersBadges).values(
+            blob=blob,
+            user_id=user_id,
+        )
+        conn.execute(query)
+        conn.commit()
+
+
+def get_user_badge(user_id):
+    with pool.connect() as conn:
+        query = (
+            select(Badges.blob)
+            .join(UsersBadges, UsersBadges.blob_id == Badges.id)
+            .join(User, User.id == UsersBadges.user_id)
+        )
+        ans = conn.execute(query).fetchall()
+        conn.commit()
+    return ans
+
+
+def add_badge_to_db(blob, name):
+    with pool.connect() as conn:
+        query = insert(Badges).values(
+            path=blob,
+            description=name,
+        )
+        conn.execute(query)
+        conn.commit()
 
 
 def get_model():
@@ -105,3 +133,18 @@ def add_model(blob):
         )
         conn.execute(query)
         conn.commit()
+
+
+def get_all_plants_from_db():
+    with pool.connect() as conn:
+        query = select(Plant)
+        ans = conn.execute(query).fetchall()
+        conn.commit()
+    return ans
+
+
+def get_plant_by_name(name: str):
+    with pool.connect() as conn:
+        query = select(Plant).where(Plant.name == name)
+        result = conn.execute(query).fetchone()
+    return result
