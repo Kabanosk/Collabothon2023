@@ -31,4 +31,8 @@ def add_user(username, email, password):
         conn.execute(query)
         conn.commit()
 
+# def for model
+
+#
+
 
