@@ -1,11 +1,16 @@
 from fastapi import FastAPI
-from database.connector import connect_with_connector
 
-app = FastAPI()
-
-pool = connect_with_connector()
+from routes.user import router as profile_router
 
 
-@app.get("/")
-def main():
-    return {"success": True}
+def create_app() -> FastAPI:
+    _app = FastAPI()
+
+    _app.include_router(
+        profile_router,
+        prefix='/profile'
+    )
+    return _app
+
+
+app = create_app()
