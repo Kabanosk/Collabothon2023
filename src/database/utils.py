@@ -2,7 +2,9 @@ import datetime
 
 from connector import connect_with_connector
 from sqlalchemy import insert, select, update
-from tables import Badges, Inventory, Model, Photo, Plant, User, UsersBadges
+
+from database.connector import connect_with_connector
+from database.tables import Inventory, Photo, Plant, User, UsersBadges
 
 pool = connect_with_connector()
 
@@ -73,7 +75,7 @@ def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=
 
 def data_for_model():
     with pool.connect() as conn:
-        query = select(Inventory.plant_id).join(User, User.id == Inventory.user_id)
+        query = select(User.id, Inventory.plant_id).join(User, User.id == Inventory.user_id)
         ans = conn.execute(query).fetchall()
         conn.commit()
 
@@ -108,31 +110,6 @@ def add_badge_to_db(blob, name):
         query = insert(Badges).values(
             blob=blob,
             description=name,
-        )
-        conn.execute(query)
-        conn.commit()
-
-
-def get_model():
-    with pool.connect() as conn:
-        query = select(Model.blob)
-        ans = conn.execute(query).fetchall()
-        conn.commit()
-
-    return ans
-
-
-def update_model(blob):
-    with pool.connect() as conn:
-        query = update(Model.blob).where(Model.id == 1)
-        conn.execute(query)
-        conn.commit()
-
-
-def add_model(blob):
-    with pool.connect() as conn:
-        query = insert(Model).values(
-            blob=blob,
         )
         conn.execute(query)
         conn.commit()
