@@ -71,12 +71,11 @@ def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=
 
 def data_for_model():
     with pool.connect() as conn:
-        query = select(User.id, Inventory.plant_id).join(User, User.id == Inventory.user_id)
+        query = select(User.id, Inventory.plant_id).join(
+            User, User.id == Inventory.user_id)
         ans = conn.execute(query).fetchall()
         conn.commit()
     return ans
-
-
 
 
 def add_user_badge(blob, user_id):
@@ -111,12 +110,6 @@ def add_badge_to_db(blob, name):
         conn.commit()
 
 
-<<<<<<< HEAD
-=======
-== == == =
->>>>>> > c2330df(Tips for running on Docker and adding model to database)
-
-
 def get_model():
     with pool.connect() as conn:
         query = select(Model.blob)
@@ -142,10 +135,6 @@ def add_model(blob):
         conn.commit()
 
 
-<< << << < HEAD
-
-
->>>>>>> 0c5b1eb (Tips for running on Docker and adding model to database)
 def get_all_plants_from_db():
     with pool.connect() as conn:
         query = select(Plant)
@@ -159,7 +148,3 @@ def get_plant_by_name(name: str):
         query = select(Plant).where(Plant.name == name)
         result = conn.execute(query).fetchone()
     return result
-
-
-== == == =
->>>>>> > c2330df(Tips for running on Docker and adding model to database)
