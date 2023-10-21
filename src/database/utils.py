@@ -10,7 +10,6 @@ def get_user_by_username(username: str):
     with pool.connect() as conn:
         query = select(User).where(User.username == username)
         result = conn.execute(query).fetchone()
-
     return result
 
 
@@ -72,10 +71,10 @@ def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=
 
 def data_for_model():
     with pool.connect() as conn:
-        query = select(User.id, Inventory.plant_id).join(User, User.id == Inventory.user_id)
+        query = select(User.id, Inventory.plant_id).join(
+            User, User.id == Inventory.user_id)
         ans = conn.execute(query).fetchall()
         conn.commit()
-
     return ans
 
 
@@ -98,7 +97,6 @@ def get_user_badge(user_id):
         )
         ans = conn.execute(query).fetchall()
         conn.commit()
-
     return ans
 
 
@@ -117,7 +115,6 @@ def get_all_plants_from_db():
         query = select(Plant)
         ans = conn.execute(query).fetchall()
         conn.commit()
-
     return ans
 
 
@@ -125,5 +122,4 @@ def get_plant_by_name(name: str):
     with pool.connect() as conn:
         query = select(Plant).where(Plant.name == name)
         result = conn.execute(query).fetchone()
-
     return result
