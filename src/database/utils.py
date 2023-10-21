@@ -1,7 +1,7 @@
 from sqlalchemy import insert, select
 
-from database.connector import connect_with_connector
-from database.tables import Inventory, Photo, Plant, User
+from connector import connect_with_connector
+from tables import Inventory, Photo, Plant, User, Badges
 
 pool = connect_with_connector()
 
@@ -68,6 +68,25 @@ def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=
 def data_for_model():
     with pool.connect() as conn:
         query = select(Inventory.plant_id).join(User, User.id == Inventory.user_id)
+        ans = conn.execute(query).fetchall()
+        conn.commit()
+
+    return ans
+
+
+def add_badge(blob, user_id):
+    with pool.connect() as conn:
+        query = insert(Badges).values(
+            blob=blob,
+            user_id=user_id,
+        )
+        conn.execute(query)
+        conn.commit()
+
+
+def get_badge(user_id):
+    with pool.connect() as conn:
+        query = select(Badges.blob).where(user_id == Badges.user_id)
         ans = conn.execute(query).fetchall()
         conn.commit()
 
