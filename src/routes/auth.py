@@ -5,7 +5,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from src.validation import valid_email, valid_password
-from src.database import User
+from src.database.utils import get_user_by_username, add_user
 
 router = APIRouter()
 templates = Jinja2Templates(directory="src/templates")
@@ -17,21 +17,33 @@ def get_register_page(request: Request):
 
 
 @router.post("/register")
-def register_user(request: Request, username: str = Form(""), password: str = Form("")):
-    new_user = User.get()
+def register_user(request: Request, email: str = Form(""), username: str = Form(""), password: str = Form("")):
+    new_user = get_user_by_username(username)
 
     if not valid_email(username):
-        return {"message": "Email not valid."}
+        return templates.TemplateResponse('login.html', {'request': request, 'message': 'Email not valid'})
     if not valid_password(password):
-        return {"message": "Password not valid."}
+        return templates.TemplateResponse('login.html', {
+            'request': request,
+            'message': 'Password must contains at least 8 characters, one letter, one number '
+                       'and one special character from "@$!%*#?&"'
+        })
 
-    if new_user.exists():
-        return {"message": "User exists."}
+    if new_user:
+        return templates.TemplateResponse('login.html', {'request': request, 'message': 'User exists'})
 
-    new_user = User(-1, login, username, password, 0)
-    new_user.add_to_db()
-    new_user = User.get(login=new_user.login)
-    request.session["user"] = new_user.to_dict()
+    ph = PasswordHasher()
+    h_pass = ph.hash(password)
+    add_user(username, email, h_pass)
+    new_user = get_user_by_username(username)
+
+    request.session["user"] = {
+        'id': new_user[0],
+        'username': new_user[1],
+        'email': new_user[2],
+        'password': new_user[3],
+        'inventory': new_user[4]
+    }
     return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
 
@@ -42,9 +54,9 @@ def get_login_page(request: Request):
 
 @router.post("/login")
 def login_user(request: Request, username: str = Form(""), password: str = Form("")):
-    user = User.get( username)
+    user = get_user_by_username(username)
     if not user:
-        return {"message": "User not found."}
+        return templates.TemplateResponse('login.html', {'request': request, 'message': 'User not found'})
 
     ph = PasswordHasher()
     h_pass = user.password
@@ -52,9 +64,15 @@ def login_user(request: Request, username: str = Form(""), password: str = Form(
     try:
         ph.verify(h_pass, password)
     except VerifyMismatchError:
-        return {"message": "Bad password"}
+        return templates.TemplateResponse('login.html', {'request': request, 'message': 'Bad password'})
 
-    request.session["user"] = user.to_dict()
+    request.session["user"] = {
+        'id': user[0],
+        'username': user[1],
+        'email': user[2],
+        'password': user[3],
+        'inventory': user[4]
+    }
     return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
 
