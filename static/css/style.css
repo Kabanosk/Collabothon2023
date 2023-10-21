@@ -528,35 +528,58 @@ a
 	align-items: center;
 	justify-content: flex-start;
 	height: 30vh;
-	margin: 20px; 
+	margin: 20px;
+	padding: 30px;
 }
   
-.badge-group h2 {
+.badge-group h2
+{
 	font-size: 24px;
 	margin: 10px 0;
 }
 
-.oval-badge {
-	background-color: #1ff;
-	color: #000;
+.oval-badge
+{
+	background-color: #1ff; /* to change */
+	color: #000; /* to change */
+	border: 5px red; /* to change */
+	border-style: solid;
 	border-radius: 20px;
 	padding: 20px;
 	margin: 10px 0;
-	display: flex;
-	text-align: center;
-	justify-content: flex-start;
-	font-size: 24px; 
-	font-weight: 900;
 	width: 800px;
-	height: 80px;
+	display: flex;
+	flex-direction: row;
+	align-items:flex-start;
 }
 
-.badge-group ul {
+.badge-group ul
+{
 	list-style: none;
 	padding: 0;
 }
 
-.left-aligned {
+.left-aligned
+{
 	margin-right: 10px;
 	float: left;
+}
+
+.badge-name
+{
+	margin-right: 80px;
+	font-size: 28px; 
+	font-weight: 900;
+	text-align: left;
+	align-self: flex-start; 
+
+}
+
+.badge-description
+{
+	margin-right: 100px;
+	font-size: 15px; 
+	font-weight: 300;
+	text-align: left;
+	font-style: italic;
 }
