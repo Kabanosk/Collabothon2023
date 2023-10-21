@@ -1,3 +1,5 @@
+import datetime
+
 from connector import connect_with_connector
 from sqlalchemy import insert, select, update
 from tables import Badges, Inventory, Model, Photo, Plant, User, UsersBadges
@@ -20,10 +22,10 @@ def get_user_by_email(email: str):
     return result
 
 
-def add_user(username, email, password, score):
+def add_user(username, email, password, score, country=None):
     with pool.connect() as conn:
         query = insert(User).values(
-            username=username, password=password, email=email, score=score
+            username=username, password=password, email=email, score=score, country=country,
         )
         conn.execute(query)
 
@@ -56,6 +58,7 @@ def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=
             user_id=user_id,
             plant_id=plant_id,
             photo_id=photo_id,
+            creation_date=datetime.datetime.now(),
             weight=weight,
             age=age,
             height=height,
@@ -128,3 +131,12 @@ def add_model(blob):
         )
         conn.execute(query)
         conn.commit()
+
+
+def get_all_plants_from_db():
+    with pool.connect() as conn:
+        query = select(Plant)
+        ans = conn.execute(query).fetchall()
+        conn.commit()
+
+    return ans
