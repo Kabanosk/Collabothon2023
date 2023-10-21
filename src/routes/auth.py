@@ -6,7 +6,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from database.utils import add_user, data_for_model, get_user_by_username
-from model import get_model
+# from model import get_model
 from validation import valid_email, valid_password
 
 router = APIRouter()
@@ -51,21 +51,21 @@ def register_user(
     add_user(username, email, h_pass)
     new_user = get_user_by_username(username)
 
-    model = request.session.get("model")
-    if model:
-        n = model.data.shape[1]
-        request.state.model = model.add_user(np.zeros((n,)))
-    else:
-        request.state.model = get_model(data_for_model())
+    # model = request.session.get("model")
+    # n = model.data.shape[1]
+    # if model:
+    #     request.state.model = model.add_user(np.zeros((n,)))
+    # else:
+    #     request.state.model = get_model(data_for_model())
 
     request.state.user = {
         "id": new_user[0],
         "username": new_user[1],
         "email": new_user[2],
         "password": new_user[3],
-        "inventory": new_user[4],
+        # 'inventory': new_user[4]
     }
-    return RedirectResponse("/register", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @router.get("/login", response_class=HTMLResponse)
@@ -96,7 +96,7 @@ def login_user(request: Request, username: str = Form(""), password: str = Form(
         "username": user[1],
         "email": user[2],
         "password": user[3],
-        "inventory": user[4],
+        # 'inventory': user[4]
     }
     return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
 

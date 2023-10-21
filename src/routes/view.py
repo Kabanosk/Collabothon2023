@@ -5,6 +5,6 @@ router = APIRouter()
 templates = Jinja2Templates(directory="src/templates")
 
 
-@router.get('/')
+@router.get("/")
 def profile(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
