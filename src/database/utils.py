@@ -96,7 +96,7 @@ def get_user_badge(user_id):
         query = (
             select(Badges.path)
             .join(UsersBadges, UsersBadges.blob_id == Badges.id)
-            .join(User, User.id == UsersBadges.user_id)
+            .join(User, User.id == UsersBadges.user_id).where(User.id == user_id)
         )
         ans = conn.execute(query).fetchall()
         conn.commit()

@@ -81,13 +81,13 @@ def login_user(request: Request, username: str = Form(""), password: str = Form(
             "login.html", {"request": request, "message": "Bad password"}
         )
 
-    request.state.user = {
+    request.session['user'] = {
         "id": user[0],
         "username": user[1],
         "email": user[2],
         "password": user[3],
     }
-    return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse("/profile", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @router.get("/logout")

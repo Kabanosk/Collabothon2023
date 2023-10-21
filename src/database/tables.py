@@ -19,7 +19,7 @@ class User(Base):
     country = sa.Column(sa.String(150), nullable=True)
     score = sa.Column(sa.Integer, nullable=False)
     inventory = relationship("Inventory")
-    badges = relationship("UserBadges")
+    badges = relationship("UsersBadges")
 
 
 class Inventory(Base):

@@ -5,23 +5,21 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from database.utils import get_all_plants_from_db
+from database.utils import get_all_plants_from_db, get_user_badge, get_user_by_username
 from model import Model
 
 router = APIRouter()
-templates = Jinja2Templates(directory="templates")
-
+templates = Jinja2Templates(directory="templates/profile")
 
 # Every function using this decorator
 # must accept fastapi.Request as 1st argument
 def auth_required(f):
     @wraps(f)
     def check_session(*args, **kwargs):
-        request = args[0]
+        request = kwargs['request']
+        print([i for i in request.items()])
         if not request.session.get("user"):
-            return templates.TemplateResponse(
-                "login.html", {"error": "Not Authenticated"}
-            )
+            return RedirectResponse("/login")
         f(*args, **kwargs)
 
     return check_session
@@ -33,7 +31,6 @@ def profile(request: Request):
     user = request.session.get("user")
     if not user:
         return RedirectResponse("/login", status_code=status.HTTP_303_SEE_OTHER)
-
     user_vec = model.data[user['id']]
     recommended_users = model.get_recommended_users(user_vec.reshape((1, -1)))
     keys = [list(model.data.keys())[i] for i in sorted(recommended_users[0])]
@@ -47,9 +44,12 @@ def profile(request: Request):
 
     recommended_plants = [plants_d[x] for x in recommended_plants_id]
 
+
+    user = request.session.get("user")
+    user_badges = get_user_badge(user['id'])
     return templates.TemplateResponse(
-        "profile/main.html",
-        {"request": request, "recommended_plants": recommended_plants},
+        "profile.html",
+        {"request": request, "badges": user_badges},
     )
 
 

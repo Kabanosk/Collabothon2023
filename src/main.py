@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from starlette.middleware.sessions import SessionMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from database.utils import data_for_model
 from model import get_model
@@ -23,6 +24,7 @@ def create_app() -> FastAPI:
     _app.include_router(plant_router, prefix="/inventory")
     _app.include_router(profile_router, prefix="/profile")
     _app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY"))
+    _app.mount('/static',StaticFiles(directory='/app/static'),name='static')
     return _app
 
 
