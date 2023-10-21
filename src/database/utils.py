@@ -107,3 +107,13 @@ def update_model(blob):
         query = update(Model.blob).where(Model.id == 1)
         conn.execute(query)
         conn.commit()
+
+
+def add_model(blob):
+    with pool.connect() as conn:
+        query = insert(Model).values(
+            blob=blob,
+        )
+        conn.execute(query)
+        conn.commit()
+
