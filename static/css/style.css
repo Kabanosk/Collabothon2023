@@ -405,12 +405,6 @@ a
 	background: #161616;
 }
 
-/* .navigation.scrolled */
-/* { */
-	/* background-color: #161616 !important; */
-	/* transition: background-color 500ms linear; */
-/* } */
-
 .navigation #brand
 {
 	float: left;
@@ -557,13 +551,9 @@ a
 	margin: 10px 0;
 	display: flex;
 	text-align: center;
-<<<<<<< HEAD
-	font-size: 24px;
-=======
 	justify-content: flex-start;
-	font-size: 24px; 
+	font-size: 24px;
 	font-weight: 900;
->>>>>>> Feature/Frontend/Badges
 	width: 800px;
 	height: 80px;
 }
@@ -576,8 +566,4 @@ a
 .left-aligned {
 	margin-right: 10px;
 	float: left;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Feature/Frontend/Badges
