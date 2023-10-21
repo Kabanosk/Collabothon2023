@@ -550,13 +550,20 @@ a
 }
 
 .oval-badge {
-	background-color: #3498db;
-	color: #fff;
+	background-color: #1ff;
+	color: #000;
 	border-radius: 20px;
 	padding: 20px;
 	margin: 10px 0;
+	display: flex;
 	text-align: center;
+<<<<<<< HEAD
 	font-size: 24px;
+=======
+	justify-content: flex-start;
+	font-size: 24px; 
+	font-weight: 900;
+>>>>>>> Feature/Frontend/Badges
 	width: 800px;
 	height: 80px;
 }
@@ -566,13 +573,11 @@ a
 	padding: 0;
 }
 
-.badge-content {
-	display: flex;
-	align-items:baseline;
-	justify-content: flex-start;
-  }
-
 .left-aligned {
 	margin-right: 10px;
 	float: left;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Feature/Frontend/Badges
