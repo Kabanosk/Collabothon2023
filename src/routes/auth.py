@@ -65,7 +65,7 @@ def register_user(
         "password": new_user[3],
         # 'inventory': new_user[4]
     }
-    return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse("/login", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @router.get("/login", response_class=HTMLResponse)
