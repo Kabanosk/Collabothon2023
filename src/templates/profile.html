@@ -27,6 +27,9 @@
 	<script src="/static/js/jquery.cloud9carousel.js"></script>
 
 	<script src="/static/js/carousel.js" type="text/javascript"></script>
+
+	<!-- Plant input -->
+	<script src = "/static/js/add_plant.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -66,11 +69,31 @@
 							<button class="right"><i class="fas fa-angle-right"></i></button>
 						</div>
 					</div>
+					
+					<div id="add_plant_wrapper">
+						<form id="add_plant">
+							<div id="add_plant_input_wrapper">
+								<p>Flower name</p>
+								<input id="name_input" value="test" type="text">
+								<p>Flower image</p>
+								<input id="img_input" type="file" accept="image/jpeg, image/png, image/jpg">
+								<output id="img_output"></output>
+								<input type="submit" id="submit_button" value="Add plant"/>
+							</div>
+							<div id="display_form_button_div">
+								<button id="display_form_button">
+									+
+								</button>
+								Add plant
+							</div>
+						</form>
+					</div>
+
 				</div>
 
 				<footer class="footer">
 					<h1 class="footing footer__item">
-						Collabathon 2023
+						Collabothon 2023
 					</h1>
 					<h1 class="footing footer__item">
 						✨🌟💖💎🦄💎💖🌟✨🌟💖💎🦄💎💖🌟✨
