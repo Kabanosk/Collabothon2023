@@ -1,10 +1,9 @@
 import datetime
 
-from connector import connect_with_connector
-from sqlalchemy import insert, select, update
+from sqlalchemy import insert, select
 
 from database.connector import connect_with_connector
-from database.tables import Inventory, Photo, Plant, User, UsersBadges
+from database.tables import Inventory, Photo, Plant, User, UsersBadges, Badges
 
 pool = connect_with_connector()
 
@@ -108,7 +107,7 @@ def get_user_badge(user_id):
 def add_badge_to_db(blob, name):
     with pool.connect() as conn:
         query = insert(Badges).values(
-            blob=blob,
+            path=blob,
             description=name,
         )
         conn.execute(query)
