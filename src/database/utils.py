@@ -1,6 +1,6 @@
 from connector import connect_with_connector
 from sqlalchemy import insert, select, update
-from tables import Badges, Inventory, Model, Photo, Plant, User
+from tables import Badges, Inventory, Model, Photo, Plant, User, UsersBadges
 
 pool = connect_with_connector()
 
@@ -73,9 +73,9 @@ def data_for_model():
     return ans
 
 
-def add_badge(blob, user_id):
+def add_user_badge(blob, user_id):
     with pool.connect() as conn:
-        query = insert(Badges).values(
+        query = insert(UsersBadges).values(
             blob=blob,
             user_id=user_id,
         )
@@ -83,13 +83,22 @@ def add_badge(blob, user_id):
         conn.commit()
 
 
-def get_badge(user_id):
+def get_user_badge(user_id):
     with pool.connect() as conn:
-        query = select(Badges.blob).where(user_id == Badges.user_id)
+        query = select(UsersBadges.blob).where(user_id == UsersBadges.user_id)
         ans = conn.execute(query).fetchall()
         conn.commit()
 
     return ans
+
+
+def add_badge_to_db(blob):
+    with pool.connect() as conn:
+        query = insert(Badges).values(
+            blob=blob,
+        )
+        conn.execute(query)
+        conn.commit()
 
 
 def get_model():

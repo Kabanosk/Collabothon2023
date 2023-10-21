@@ -18,7 +18,7 @@ class User(Base):
     password = sa.Column(sa.String(150), nullable=False)
     score = sa.Column(sa.Integer, nullable=False)
     inventory = relationship("Inventory")
-    badges = relationship("Badges")
+    badges = relationship("UserBadges")
 
 
 class Inventory(Base):
@@ -51,8 +51,8 @@ class Photo(Base):
     inventory = relationship("Inventory")
 
 
-class Badges(Base):
-    __tablename__ = "Badges"
+class UsersBadges(Base):
+    __tablename__ = "UsersBadges"
 
     id = sa.Column(sa.Integer, primary_key=True)
     blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)
@@ -61,6 +61,13 @@ class Badges(Base):
 
 class Model(Base):
     __tablename__ = "Model"
+
+    id = sa.Column(sa.Integer, primary_key=True)
+    blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)
+
+
+class Badges(Base):
+    __tablename__ = "Badges"
 
     id = sa.Column(sa.Integer, primary_key=True)
     blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)
