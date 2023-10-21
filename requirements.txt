@@ -8,3 +8,7 @@ sqlalchemy
 pg8000
 cloud-sql-python-connector
 alembic
+argon2-cffi
+python-multipart
+starlette
+itsdangerous

@@ -13,23 +13,25 @@ def auth_required(f):
     @wraps(f)
     def check_session(*args, **kwargs):
         request = args[0]
-        if not request.session.get('user'):
-            return templates.TemplateResponse("login.html", {"error": "Not Authenticated"})
+        if not request.session.get("user"):
+            return templates.TemplateResponse(
+                "login.html", {"error": "Not Authenticated"}
+            )
         f(*args, **kwargs)
 
     return check_session
 
 
-@router.get('/')
+@router.get("/")
 def profile(request: Request):
     return templates.TemplateResponse("profile/main.html", {"request": request})
 
 
-@router.get('/stats')
+@router.get("/stats")
 def profile_stats(request: Request):
     return templates.TemplateResponse("profile/stats.html", {"request": request})
 
 
-@router.get('/badges')
+@router.get("/badges")
 def profile_badges(request: Request):
     return templates.TemplateResponse("profile/badges.html", {"request": request})
