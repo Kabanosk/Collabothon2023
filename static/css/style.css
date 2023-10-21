@@ -578,18 +578,26 @@ a
 
 .badge-name
 {
-	margin-right: 80px;
 	font-size: 28px;
 	font-weight: 900;
-	text-align: left;
+	text-align: center;
 	align-self: flex-start;
 }
 
 .badge-description
 {
-	margin-right: 100px;
-	font-size: 15px;
+	margin-left: 100px;
+	font-size: 23px;
 	font-weight: 300;
-	text-align: left;
+	text-align: center;
 	font-style: italic;
+}
+
+.list-description
+{
+	position: relative;
+	font-size:30px;
+	text-align: center;
+	padding-right: 300px;
+	margin-top: 40px;	
 }
