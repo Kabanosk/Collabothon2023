@@ -120,6 +120,7 @@ h1
 
 .signin
 {
+	/* #0B666A, #164B60 */
 	background-color: rgba(19, 199, 184, 0.726) !important;
 	margin: 0rem 0rem 0rem 20rem !important;
 }
@@ -308,6 +309,67 @@ h1
 	top: 50%;
 	transform: translateY(-50%);
 }
+
+#wrap
+{
+	width: 980px;
+	left: -490px;
+	top: 2rem;
+	margin-top: 0px;
+	margin-left: 50%;
+	position: relative;
+	margin-bottom: 4rem;
+}
+
+#showcase
+{
+	width: 100%;
+	height: 600px;
+}
+
+#showcase img
+{
+	cursor: pointer;
+	opacity: 0.6;
+}
+
+#item-title
+{
+	color: #fff;
+	font-size: 1.5px;
+	letter-spacing: 0.13em;
+	text-align: center;
+	margin-top: -40px;
+	margin-bottom: 20px;
+	font-family:'Poppins';
+}
+
+.navig
+{
+	text-align: center;
+}
+
+.navig > button
+{
+	width: 35px;
+	height: 35px;
+	color: #fff;
+	font-size: 1.5rem;
+	text-align: center;
+	background: #841839;
+	border: none;
+	cursor: pointer;
+	border-radius: 40px;
+	margin: 8px;
+}
+
+.navig > button:focus
+.navig > button:focus
+{
+	border: none;
+	outline: none;
+}
+
 
 @keyframes ellipseRotate
 {
