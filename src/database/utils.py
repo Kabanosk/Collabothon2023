@@ -1,34 +1,26 @@
 from connector import connect_with_connector_auto_iam_authn
-from sqlalchemy import insert
+from sqlalchemy import insert, select
 from tables import User
 
 
-# User
-# def get_user_by_username(username: str):
-#         with engine.connect() as conn:
-#             res = conn.execute(f'SELECT * FROM "user" WHERE username = {username}')
-#             if res:
-#                 return res[0]
-#             else:
-#                 return None
+def get_user_by_username(username: str):
+    pool = connect_with_connector_auto_iam_authn()
 
-#
-# def get_user_by_email(email: str) -> Optional[None, list]:
-#     with connect_with_connector_auto_iam_authn() as engine:
-#         with engine.connect() as conn:
-#             res = conn.execute(f'SELECT * FROM "user" WHERE email = {email}')
-#             if res:
-#                 return res[0]
-#             else:
-#                 return None
-#
-#
-# def get_next_uid() -> int:
-#     with connect_with_connector_auto_iam_authn() as engine:
-#         with engine.connect() as conn:
-#             res = conn.execute(f'SELECT id FROM "user"')
-#             return res[-1]
-#
+    with pool.connect() as conn:
+        query = select(User).where(User.username == username)
+        result = conn.execute(query).fetchone()
+
+        return result
+
+
+def get_user_by_email(email: str):
+    pool = connect_with_connector_auto_iam_authn()
+
+    with pool.connect() as conn:
+        query = select(User).where(User.email == email)
+        result = conn.execute(query).fetchone()
+
+        return result
 
 
 def add_user(username, email, password):
@@ -38,3 +30,5 @@ def add_user(username, email, password):
         query = insert(User).values(username=username, password=password, email=email)
         conn.execute(query)
         conn.commit()
+
+
