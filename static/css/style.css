@@ -394,11 +394,13 @@ a
 
 .navigation
 {
-	/* width: 100%; */
-	width: 50%;
+	/* width: 100vw; */
+	width: 100%;
+	/* min-width: 1400px; */
+	/* width: 50%; */
 	height: 80px;
-	position: fixed;
-	/* left: -100px; */
+	position: relative;
+	/* left: -360px; */
 	z-index: 110;
 	background: #161616;
 }
@@ -420,12 +422,22 @@ a
 	font-size: 18px;
 }
 
+.navigation #brand img
+{
+	display: inline-block;
+	/* font-size: 3.7rem; */
+	position: relative;
+	top: -20px;
+	left: -35px;
+}
+
 .navigation #brand p
 {
 	display: inline-block;
 	font-size: 3.7rem;
 	position: relative;
 	top: -35px;
+	left: -40px;
 }
 
 .navigation #brand a
@@ -443,8 +455,9 @@ a
 .navigation #menu
 {
 	float: left;
-	right: 40px;
-	position: fixed;
+	display: block;
+	right: 10px;
+	position: relative;
 }
 
 .navigation #menu li
@@ -529,11 +542,9 @@ a
 	justify-content: flex-start;
 	height: 30vh;
 	margin: 20px;
-	padding: 30px;
 }
-  
-.badge-group h2
-{
+
+.badge-group h2 {
 	font-size: 24px;
 	margin: 10px 0;
 }
@@ -547,7 +558,10 @@ a
 	border-radius: 20px;
 	padding: 20px;
 	margin: 10px 0;
+	font-size: 24px;
+	font-weight: 900;
 	width: 800px;
+	height: 70px;
 	display: flex;
 	flex-direction: row;
 	align-items:flex-start;
