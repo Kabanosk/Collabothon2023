@@ -1,12 +1,12 @@
 from connector import connect_with_connector_auto_iam_authn
-from sqlalchemy import insert, select, join
-from tables import User, Inventory
+from sqlalchemy import insert, select
+from tables import User, Inventory, Plant, Photo
 # from model import get_model
+
+pool = connect_with_connector_auto_iam_authn()
 
 
 def get_user_by_username(username: str):
-    pool = connect_with_connector_auto_iam_authn()
-
     with pool.connect() as conn:
         query = select(User).where(User.username == username)
         result = conn.execute(query).fetchone()
@@ -15,8 +15,6 @@ def get_user_by_username(username: str):
 
 
 def get_user_by_email(email: str):
-    pool = connect_with_connector_auto_iam_authn()
-
     with pool.connect() as conn:
         query = select(User).where(User.email == email)
         result = conn.execute(query).fetchone()
@@ -25,17 +23,33 @@ def get_user_by_email(email: str):
 
 
 def add_user(username, email, password):
-    pool = connect_with_connector_auto_iam_authn()
-
     with pool.connect() as conn:
         query = insert(User).values(username=username, password=password, email=email)
         conn.execute(query)
         conn.commit()
 
 
-def add_plant(user_id, plant_id, photo_id, weight=0, age=0, height=0):
-    pool = connect_with_connector_auto_iam_authn()
+def add_plant(name, co, formula):
+    with pool.connect() as conn:
+        query = insert(Plant).values(
+            name=name,
+            co2_absorbtion=co,
+            formula=formula,
+        )
+        conn.execute(query)
+        conn.commit()
 
+
+def add_photo(blob):
+    with pool.connect() as conn:
+        query = insert(Photo).values(
+           blob=blob,
+        )
+        conn.execute(query)
+        conn.commit()
+
+
+def add_plant_to_inventory(user_id, plant_id, photo_id, weight=0, age=0, height=0):
     with pool.connect() as conn:
         query = insert(Inventory).values(
             user_id=user_id,
@@ -49,16 +63,10 @@ def add_plant(user_id, plant_id, photo_id, weight=0, age=0, height=0):
         conn.commit()
 
 
-def creating_model():
-    pool = connect_with_connector_auto_iam_authn()
-
+def data_for_model():
     with pool.connect() as conn:
-        query = select(Inventory.id, Inventory.plant_id).select_from(User).join(Inventory, User.id == Inventory.user_id)
-        conn.execute(query)
+        query = select(Inventory.plant_id).join(User, User.id == Inventory.user_id)
+        ans = conn.execute(query).fetchall()
         conn.commit()
 
-    # model = get_model()
-
-
-creating_model()
-
+    return ans
