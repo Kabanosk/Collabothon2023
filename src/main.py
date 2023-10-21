@@ -1,9 +1,7 @@
 from fastapi import FastAPI
-from database.connector import connect_with_connector
+from database import pool
 
 app = FastAPI()
-
-pool = connect_with_connector()
 
 
 @app.get("/")
