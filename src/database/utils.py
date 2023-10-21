@@ -21,9 +21,11 @@ def get_user_by_email(email: str):
     return result
 
 
-def add_user(username, email, password):
+def add_user(username, email, password, score):
     with pool.connect() as conn:
-        query = insert(User).values(username=username, password=password, email=email)
+        query = insert(User).values(
+            username=username, password=password, email=email, score=score
+        )
         conn.execute(query)
 
         conn.commit()

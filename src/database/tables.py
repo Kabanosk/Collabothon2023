@@ -16,6 +16,7 @@ class User(Base):
     username = sa.Column(sa.String(150), unique=True, nullable=False)
     email = sa.Column(sa.String(150), unique=True, nullable=False)
     password = sa.Column(sa.String(150), nullable=False)
+    score = sa.Column(sa.Integer, nullable=False)
     inventory = relationship("Inventory")
 
 

@@ -48,7 +48,7 @@ def register_user(
 
     ph = PasswordHasher()
     h_pass = ph.hash(password)
-    add_user(username, email, h_pass)
+    add_user(username, email, h_pass, 0)
     new_user = get_user_by_username(username)
 
     # model = request.session.get("model")

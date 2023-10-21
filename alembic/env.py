@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 
 from alembic import context
-from src.database.connector import connect_with_connector_auto_iam_authn
+from src.database.connector import connect_with_connector
 from src.database.tables import metadata
 
 # this is the Alembic Config object, which provides
@@ -56,7 +56,7 @@ def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
-    connectable = connect_with_connector_auto_iam_authn()
+    connectable = connect_with_connector()
 
     with connectable.connect() as connection:
         context.configure(connection=connection, target_metadata=target_metadata)
