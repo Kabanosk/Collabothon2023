@@ -1,0 +1,336 @@
+html
+{
+	font-size: 62.5%;
+	width: 100%;
+	height: 100%;
+}
+
+body
+{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size: 1.4rem;
+	overflow: hidden;
+}
+
+h1
+{
+	font-size: 2.4rem;
+}
+
+.container__item
+{
+	margin: 0 auto 0;
+}
+
+.landing-page-container
+{
+	width: 100%;
+	min-height: 100%;
+	height: 100vh;
+	background:
+	linear-gradient(217deg, rgba(20, 125, 245, 0.4), rgba(54, 247, 54, 0.275) 80%),
+	linear-gradient(217deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3) 85%),
+	linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7) 85%),
+	/* linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%), */
+	url('/static/img/Output.png') no-repeat center center fixed;
+
+	/* height: 100%; */
+
+
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+	display: table;
+	font-family: "Montserrat", sans-serif;
+	color: #fff;
+	align-content: center;
+}
+
+.content-wrapper
+{
+	max-width: 1200px;
+	width: 90%;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+
+.header
+{
+	width: 100%;
+	height: 2rem;
+	padding: 3rem 2rem;
+	display: block;
+}
+
+.footer
+{
+	width: 100%;
+	height: 5rem;
+	/* background-color: red; */
+	padding: 3rem 2rem;
+	display: block;
+}
+
+.footer__item
+{
+	display: inline-block;
+}
+
+.footing
+{
+	width: 90%;
+	font-size: 2rem;
+	font-weight: bold;
+	line-height: 1.7rem;
+	margin: 0 30px;
+	margin: 10px 30px;
+	text-align: center;
+	align-content: center;
+}
+
+.login
+{
+	width: 100%;
+	height: 5rem;
+	/* background-color: blueviolet; */
+	margin: 12rem 0rem 0rem 0rem;
+
+	padding: 3rem 0rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+	align-content: center;
+}
+
+.login__item
+{
+	padding: 10px 30px;
+	text-align: center;
+	border-radius: 50px;
+
+	box-shadow: -2px -2px 8px rgba(255, 255, 255, 0.6),
+    -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.signin
+{
+	background-color: rgba(19, 199, 184, 0.726) !important;
+	margin: 0rem 0rem 0rem 20rem !important;
+}
+
+.signup
+{
+	background-color: rgba(19, 199, 184, 0.726) !important;
+	margin: 0rem 20rem 0rem 0rem !important;
+}
+
+.login__item a
+{
+	text-decoration: none;
+	color: #fff;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+
+.login__item:hover
+{
+    box-shadow:
+	inset -8px -8px 8px rgba(255, 255, 255, 0.6),
+    inset -8px -8px 12px rgba(255, 255, 255, 0.5),
+    inset 8px 8px 4px rgba(255, 255, 255, 0.1),
+    inset 8px 8px 8px rgba(0, 0, 0, 0.6);
+
+    display: inline-block;
+    transform: scale(0.98);
+}
+
+.menu-icon
+{
+	width: 2.5rem;
+	height: 1.5rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.header__item
+{
+	display: inline-block;
+}
+
+.menu-icon__line
+{
+	width: 1.5rem;
+	height: .2rem;
+	background: #fff;
+	display: block;
+}
+
+.menu-icon__line::before, .menu-icon__line::after
+{
+	content: '';
+	width: 1.5rem;
+	height: .2rem;
+	background: #fff;
+	display: inline-block;
+	position: relative;
+}
+
+.menu-icon__line::before
+{
+	top: -0.6rem;
+	left: .5rem;
+}
+
+.menu-icon__line::after
+{
+	top: -1.8rem;
+}
+
+.heading
+{
+	width: 90%;
+	font-size: 2rem;
+	font-weight: bold;
+	line-height: 1.7rem;
+	margin: 0 30px;
+	text-align: center;
+}
+
+.ellipse-container
+{
+	width: 50rem;
+	height: 50rem;
+	border-radius: 50%;
+	margin: 0 auto;
+	position: relative;
+	top: 7rem;
+}
+
+.ellipse-container .greeting
+{
+	position: relative;
+	top: 12rem;
+	left: -21.75rem;
+	right: 0;
+	margin: 0 auto;
+	text-transform: uppercase;
+	letter-spacing: 1.5rem;
+	font-size: 8rem;
+	font-weight: 400;
+	opacity: .5;
+}
+
+.my-img
+{
+	width: 23rem;
+
+	position: relative;
+	top: 12rem;
+	left: 14rem;
+	right: 0;
+	margin: 0 auto;
+	opacity: .5;
+}
+
+.ellipse
+{
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	border-style: solid;
+}
+
+.ellipse__outer--thin
+{
+	width: 100%;
+	height: 100%;
+	border-width: 1px;
+	border-color: rgba(255, 255, 255, .1);
+
+	animation: ellipseOrbit 15s ease-in-out infinite;
+}
+
+.ellipse__outer--thin::after
+{
+	content: '';
+	background-image: url('/static/img/dial\ white12.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	color: #fff;
+	position: absolute;
+	/* opacity: .3; */
+	opacity: .6;
+}
+
+.ellipse__outer--thick
+{
+	width: 99.5%;
+	height: 99.5%;
+	border-width: 2px;
+	border-color: #fff transparent;
+	transform: rotate(-45deg);
+	animation: ellipseRotate 15s ease-in-out infinite;
+}
+
+.ellipse__orbit
+{
+	width: 2.5rem;
+	height: 2.5rem;
+	border-width: 2px;
+	border-color: #fff;
+	top: 5rem;
+	right: 6.75rem;
+}
+
+.ellipse__orbit::before
+{
+	content: '';
+	width: 0.7rem;
+	height: 0.7rem;
+	border-radius: 50%;
+	display: inline-block;
+	background-color: #fff;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@keyframes ellipseRotate
+{
+	0%
+	{
+		transform: rotate(-45deg);
+	}
+
+	100%
+	{
+		transform: rotate(-405deg);
+	}
+}
+
+@keyframes ellipseOrbit
+{
+	0%
+	{
+		transform: rotate(0deg);
+	}
+
+	100%
+	{
+		transform: rotate(360deg);
+	}
+}

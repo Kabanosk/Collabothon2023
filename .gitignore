@@ -1,3 +1,7 @@
 .idea/
 __pycache__/
 .env
+
+/static/css/flatpickr.css
+/static/css/tailwind.config.js
+/static/css/utility-patterns.css
