@@ -3,12 +3,17 @@
 from database.utils import pool, add_badge_to_db
 from pathlib import Path
 
-p = Path('../static/img/badges') 
+def short(path,n):
+    return Path(*Path(path).parts[-n:])
+
+p = Path('../static/img/badges/') 
 
 with pool.connect() as conn:
     print('connection success')
-    for file in [x for x in p.iterdir() if not p.is_dir()]:
-        data = file.read_bytes()
+    for file in [x for x in p.iterdir() if not x.is_dir()]:
         description = file.stem
-        add_badge_to_db(data,description)
+        #print(file,data,description)
+        print(f'Adding {description}')
+        print(f'resolved {short(file.resolve(),4)}')
+        #add_badge_to_db(data,description)
 
