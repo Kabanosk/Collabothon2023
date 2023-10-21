@@ -71,13 +71,14 @@
 					</div>
 					
 					<div id="add_plant_wrapper">
-						<form id="add_plant">
+						<form id="add_plant" method="post" action="/inventory/add" >
 							<div id="add_plant_input_wrapper">
-								<p>Flower name</p>
-								<input id="name_input" value="test" type="text">
-								<p>Flower image</p>
-								<input id="img_input" type="file" accept="image/jpeg, image/png, image/jpg">
-								<output id="img_output"></output>
+								<p>Plant name</p>
+								<input id="name_input" class="plant_input" name = "name" type="text">
+								<p>Plant image</p>
+								<input id="img_input" class="plant_input" type="file" name="photo" accept="image/jpeg, image/png, image/jpg">
+								<p>Plant age</p>
+								<input id="age_input" class="plant_input" type="number" name="age" >
 								<input type="submit" id="submit_button" value="Add plant"/>
 							</div>
 							<div id="display_form_button_div">
