@@ -55,7 +55,7 @@ class UsersBadges(Base):
     __tablename__ = "UsersBadges"
 
     id = sa.Column(sa.Integer, primary_key=True)
-    blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)
+    blob_id = sa.Column(sa.Integer, sa.ForeignKey("Badges.id"), nullable=False)
     user_id = sa.Column(sa.Integer, sa.ForeignKey("User.id"), nullable=False)
 
 
@@ -71,3 +71,4 @@ class Badges(Base):
 
     id = sa.Column(sa.Integer, primary_key=True)
     blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)
+    usersbadges = relationship("UsersBadges")

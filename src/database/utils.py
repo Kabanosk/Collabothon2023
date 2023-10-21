@@ -85,7 +85,11 @@ def add_user_badge(blob, user_id):
 
 def get_user_badge(user_id):
     with pool.connect() as conn:
-        query = select(UsersBadges.blob).where(user_id == UsersBadges.user_id)
+        query = (
+            select(Badges.blob)
+            .join(UsersBadges, UsersBadges.blob_id == Badges.id)
+            .join(User, User.id == UsersBadges.user_id)
+        )
         ans = conn.execute(query).fetchall()
         conn.commit()
 
