@@ -50,7 +50,7 @@ class Photo(Base):
     __tablename__ = "Photo"
 
     id = sa.Column(sa.Integer, primary_key=True)
-    blob = sa.Column(sa.LargeBinary, nullable=False, unique=True)
+    blob = sa.Column(sa.LargeBinary(length=2000000), nullable=False, unique=True)
     inventory = relationship("Inventory")
 
 
@@ -65,6 +65,6 @@ class UsersBadges(Base):
 class Badges(Base):
     __tablename__ = "Badges"
     id = sa.Column(sa.Integer, primary_key=True)
-    blob = sa.Column(sa.LargeBinary(length=200000), nullable=False, unique=True)
+    blob = sa.Column(sa.LargeBinary(length=2000000), nullable=False, unique=True)
     description = sa.Column(sa.String(150), nullable=False)
     usersbadges = relationship("UsersBadges")
