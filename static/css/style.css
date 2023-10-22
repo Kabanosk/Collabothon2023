@@ -141,31 +141,7 @@ h1 {
 	display: inline-block;
 }
 
-.menu-icon__line {
-	width: 1.5rem;
-	height: .2rem;
-	background: #fff;
-	display: block;
-}
-
-.menu-icon__line::before,
-.menu-icon__line::after {
-	content: '';
-	width: 1.5rem;
-	height: .2rem;
-	background: #fff;
-	display: inline-block;
-	position: relative;
-}
-
-.menu-icon__line::before {
-	top: -0.6rem;
-	left: .5rem;
-}
-
-.menu-icon__line::after {
-	top: -1.8rem;
-}
+/* --- Landing Page START --- */
 
 .heading {
 	width: 90%;
@@ -272,6 +248,9 @@ h1 {
 	top: 50%;
 	transform: translateY(-50%);
 }
+
+/* --- Landing Page END --- */
+
 
 #wrap {
 	width: 980px;
