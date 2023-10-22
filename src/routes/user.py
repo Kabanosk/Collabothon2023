@@ -5,8 +5,11 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from database.utils import get_all_plants_from_db, get_user_badge, get_user_by_username
+from database.utils import get_all_plants_from_db, get_user_badge, get_user_by_username, get_plant_stats
 from model import Model
+import matplotlib.pyplot as plt
+import mpld3
+from datetime import timedelta, date
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates/profile")
@@ -50,7 +53,35 @@ def profile_stats(request: Request):
     user = request.session.get('user')
     if not user:
         return RedirectResponse('/login', status_code=status.HTTP_303_SEE_OTHER)
-    return templates.TemplateResponse("statistics.html", {"request": request})
+    plant_stats = get_plant_stats(user['id'])
+    xs = [plant_stats[0].creation_date - timedelta(days=1)]
+    ys = [0]
+    zs = [0]
+    co2_cnt = 0
+    o2_cnt = 0
+    html_graph = None
+    if plant_stats:
+        first_elem = plant_stats[0].creation_date
+        last_elem = plant_stats[-1].creation_date
+        i = 0
+        while first_elem <= last_elem:
+            while i < len(plant_stats) and plant_stats[i].creation_date.day == first_elem.day:
+                co2_cnt += plant_stats[i].co2_absorbtion
+                o2_cnt += plant_stats[i].oxygen_emission
+                i += 1
+            xs.append(first_elem)
+            ys.append(co2_cnt + ys[-1])
+            zs.append(o2_cnt + zs[-1])
+            first_elem += timedelta(days=1)
+        fig1, ax1 = plt.subplots()
+        fig2, ax2 = plt.subplots()
+        ax1.plot(xs,ys)
+        ax2.scatter(xs,zs)
+        html_graph1 = mpld3.fig_to_html(fig1)
+        html_graph2 = mpld3.fig_to_html(fig2)
+
+    return templates.TemplateResponse("statistics.html", {"request": request, "plot": [html_graph1, html_graph2]})
+
 
 
 @router.get("/leaderboard")
