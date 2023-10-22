@@ -44,13 +44,13 @@
 				</div>
 
 				<div class="l-wrapper" id="wrapper"></div>
-				<div class="c-drawer" id="drawer">
-					<div class="c-swipe-zone" id="swipeZone"></div>
-					<div class="c-drawer__handle"></div>
-					<h4>Settings</h4><button class="c-toggle" id="test">
-						<div class="c-toggle__handle"></div>
-					</button>
-				</div>
+				<!-- <div class="c-drawer" id="drawer"> -->
+				<!-- <div class="c-swipe-zone" id="swipeZone"></div> -->
+				<!-- <div class="c-drawer__handle"></div> -->
+				<!-- <h4>Settings</h4><button class="c-toggle" id="test"> -->
+				<!-- <div class="c-toggle__handle"></div> -->
+				<!-- </button> -->
+				<!-- </div> -->
 
 				<footer class="footer">
 					<h1 class="footing footer__item">
@@ -136,7 +136,8 @@
 
 		// Render Standings
 		const renderList = (year) => {
-			const url = `https://ergast.com/api/f1/${year}/driverStandings.json`; // TODO:
+			// const url = `https://ergast.com/api/f1/${year}/PersonStandings.json`; // TODO:
+			const url = `/static/data/leaderboard.json`; // TODO:
 			emptyState();
 			fetch(url)
 				.then(response => {
@@ -163,13 +164,13 @@
 					title.innerHTML = `<h4 class="c-headline__title"><small class="u-text--danger">Tournament</small><br />Standings <small class="u-text--secondary">(${year == 'current' ? new Date().getFullYear() : year})</small></h4><span class="c-chip ${year == 'current' ? 'c-chip--success' : 'c-chip--secondary'}">Tournament ${year == 'current' ? 'in Progress' : 'Completed'}</span>`;
 					append(wrapper, title);
 					append(wrapper, table);
-					data.MRData.StandingsTable.StandingsLists[0].DriverStandings.forEach(item => {
+					data.MRData.StandingsTable.StandingsLists[0].PersonStandings.forEach(item => {
 						const tableBody = table.querySelector('tbody');
 						let tr = createNode('tr');
 						tr.classList = "c-table__row";
 						tr.innerHTML = `
 						<td class="c-table__cell c-table__cell--place u-text--center"><span class="c-place">${item.position}</span></td>
-					<td class="c-table__cell c-table__cell--name">${item.Driver.givenName} ${item.Driver.familyName}<br><small style="opacity: .4;">${item.Constructors[0].name}</small></td>
+					<td class="c-table__cell c-table__cell--name">${item.Person.givenName} ${item.Person.familyName}<br><small style="opacity: .4;">${item.Country[0].name}</small></td>
 					<td class="c-table__cell c-table__cell--points u-text--right"><strong>${item.points}</strong></td>
 				`;
 
@@ -188,9 +189,9 @@
 							</div>
 							<div class="c-winner__content">
 								<small class="c-winner__badge">winner</small>
-								<h5 class="c-winner__title">${item.Driver.givenName} ${item.Driver.familyName}</h5>
+								<h5 class="c-winner__title">${item.Person.givenName} ${item.Person.familyName}</h5>
 								<div class="c-winner__info">
-									<small class="c-winner__info-item"><strong>${item.Constructors[0].name}</strong></small>
+									<small class="c-winner__info-item"><strong>${item.Country[0].name}</strong></small>
 									<small class="c-winner__info-item">Points: <strong>${item.points}</strong></small>
 								</div>
 							</div>
@@ -213,11 +214,11 @@
 				})
 		}
 
-		// Theme toggle
-		document.getElementById('test').addEventListener('click', () => {
-			document.documentElement.classList.toggle('theme--dark')
-			document.getElementById('test').classList.toggle('c-toggle--active')
-		})
+		// // Theme toggle
+		// document.getElementById('test').addEventListener('click', () => {
+		// 	document.documentElement.classList.toggle('theme--dark')
+		// 	document.getElementById('test').classList.toggle('c-toggle--active')
+		// })
 
 		// Create season select
 		const createSeasonSelect = () => {
@@ -251,11 +252,11 @@
 			append(drawer, newSelect);
 		}
 
-		createSeasonSelect();
+		// createSeasonSelect();
 
 		renderList('current');
 
-		drawer.querySelector('.c-drawer__handle').addEventListener('click', toggleDrawer);
+		// drawer.querySelector('.c-drawer__handle').addEventListener('click', toggleDrawer);
 	</script>
 </body>
 

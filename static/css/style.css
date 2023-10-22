@@ -510,8 +510,6 @@ a {
 	float: left;
 }
 
-@import url('https://fonts.googleapis.com/css?family=DM+Sans:400,700&display=swap');
-
 html {
 	--black: 0;
 	--white: 255;
@@ -582,7 +580,7 @@ textarea:active {
 	outline: 0;
 }
 
-h1 {
+/* h1 {
 	font-size: 4.9rem;
 }
 
@@ -614,15 +612,16 @@ h5,
 h6 {
 	margin-top: 0;
 	margin-bottom: 1.6rem;
-}
+} */
 
-small {
+/* small {
 	font-size: 1.3rem;
-}
+} */
 
-p {
+/* TODO: fix -> bad navbar display */
+/* p {
 	line-height: 1.5;
-}
+} */
 
 .l-wrapper {
 	width: 100%;
@@ -1137,6 +1136,7 @@ p {
 		transform: translate(-50%, 24px);
 	}
 }
+
 #add_plant_wrapper
 {
 	display: inline-block;
@@ -1190,7 +1190,6 @@ p {
 	font-size: 1.3em;
 }
 
-
 #submit_button {
     position: relative;
 	margin: auto 200 auto 0; /* Center horizontally within the div */
@@ -1204,7 +1203,6 @@ p {
 	font-size: 1.3em;
 	bottom: -50px;
 	display: none;
-
 }
 
 #display_form_button_div
