@@ -757,65 +757,6 @@ h6 {
 	margin-right: 1.6rem;
 }
 
-.c-toggle {
-	height: 2.4rem;
-	cursor: pointer;
-	display: inline-flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 80px;
-	position: relative;
-	border: 1px solid var(--invert-20);
-	border-radius: 0.4rem;
-	margin-bottom: 1.6rem;
-	padding: 0 0.4rem;
-	flex-direction: row;
-	transition: all 100ms ease-out 0s;
-}
-
-.c-toggle:before {
-	content: 'LIGHT';
-	font-size: 1.2rem;
-	position: absolute;
-	top: 50%;
-	right: 0.4rem;
-	transform: translateY(-50%);
-	color: var(--invert-60);
-	opacity: 0;
-	animation: fadeIn 200ms ease-out forwards;
-}
-
-.c-toggle--active {
-	flex-direction: row-reverse;
-	animation: fadeIn 200ms ease-out forwards;
-}
-
-.c-toggle--active:before {
-	content: 'DARK';
-	right: auto;
-	left: 0.4rem;
-}
-
-.c-toggle__handle {
-	height: 1.6rem;
-	width: 2.4rem;
-	background: var(--invert-40);
-	display: inline-block;
-	border-radius: 0.2666666667rem;
-}
-
-.c-field__input {
-	display: block;
-	width: 100%;
-	margin-top: 0.4rem;
-	padding: 1.6rem;
-	height: 5.6rem;
-}
-
-.c-field__label {
-	font-size: 1.3rem;
-}
-
 .c-empty-state {
 	text-align: center;
 	width: 100%;
