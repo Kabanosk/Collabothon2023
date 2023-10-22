@@ -323,13 +323,6 @@ a {
 	transition: width .3s;
 }
 
-.avatar {
-	/* display: block; */
-	/* position: relative; */
-	/* top: -20px; */
-	/* font-size: 1.5em; */
-}
-
 .avatar::after
 {
 	background: #fff;
@@ -1015,12 +1008,9 @@ h6 {
 
 .oval-badge
 {
-	/* to change */
-	background-color: #1ff;
+	background-color: rgba(19, 199, 184, 0.726);
 	color: #000;
-	/* border: 5px red; to change */
-	border-style: solid;
-	border-radius: 20px;
+	border-radius: 50px;
 	padding: 20px;
 	margin: 10px 0;
 	font-size: 24px;
