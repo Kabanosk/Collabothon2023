@@ -1,3 +1,5 @@
+import random
+
 import numpy as np
 from fastapi import APIRouter, Request, Form, File, status
 from fastapi.responses import RedirectResponse
@@ -15,16 +17,16 @@ def add_to_inventory(
         request: Request,
         name: str = Form(""),
         photo: bytes = File(),
-        age: float = Form(0),
+        age: int = Form(0),
 ):
     user_id = request.session.get("user")['id']
-    # photo_id = add_photo(photo)
-    photo_id = 0
+    add_photo(random.randbytes(4))
+    photo_id = 85
     plant = get_plant_by_name(name)
     if not plant:
         return templates.TemplateResponse('profile/profile.html',
                                           {"request": request, "message": "Bad plant name"})
-    add_plant_to_inventory(user_id, plant[0], photo_id, age=age)
+    add_plant_to_inventory(user_id, plant[0], photo_id, age=int(age))
     model = Model.load()
     if user_id in model.data:
         model.data[user_id][0] += 1
