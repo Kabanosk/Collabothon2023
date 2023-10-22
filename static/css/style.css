@@ -464,7 +464,8 @@ html {
 	--base-40: rgba(0, 0, 0, 0.4);
 	--base-20: rgba(0, 0, 0, 0.2);
 	--base-10: rgba(0, 0, 0, 0.1);
-	--base-5: rgba(0, 0, 0, 0.05);
+	/* --base-5: rgba(0, 0, 0, 0.05); */
+	--base-5: rgba(0, 0, 0, 0.2);
 	--invert-full: rgba(0, 0, 0, 1);
 	--invert-80: rgba(0, 0, 0, 0.8);
 	--invert-60: rgba(0, 0, 0, 0.6);
@@ -476,7 +477,7 @@ html {
 	--blue: #00a0f5;
 	--green: #27b768;
 	--first: #f5cd75;
-	--second: var(--base-60);
+	--second: #737373;
 	--third: #c6906b;
 }
 
