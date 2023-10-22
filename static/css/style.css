@@ -462,6 +462,8 @@ a {
 	}
 }
 
+/* --- Leaderboard START --- */
+
 html {
 	--black: 0;
 	--white: 255;
@@ -906,7 +908,7 @@ h6 {
 		transform: rotate(359deg);
 	}
 }
-
+/*
 @keyframes fadeIn {
 	from {
 		opacity: 0;
@@ -943,7 +945,10 @@ h6 {
 	100% {
 		transform: translate(-50%, 24px);
 	}
-}
+} */
+
+
+/* --- Leaderboard END --- */
 
 #add_plant_wrapper
 {
@@ -1037,6 +1042,7 @@ h6 {
 	margin: 8px;
 }
 
+/* --- Badges START --- */
 
 .badge-group
 {
@@ -1047,14 +1053,15 @@ h6 {
 	justify-content: flex-start;
 	height: 30vh;
 	margin: 20px;
-	left: 200px;
+	left: 150px;
 }
 
 .oval-badge
 {
-	background-color: #1ff; /* to change */
-	color: #000; /* to change */
-	border: 5px red; /* to change */
+	/* to change */
+	background-color: #1ff;
+	color: #000;
+	/* border: 5px red; to change */
 	border-style: solid;
 	border-radius: 20px;
 	padding: 20px;
@@ -1062,7 +1069,7 @@ h6 {
 	font-size: 24px;
 	font-weight: 900;
 	width: 800px;
-	height: 70px;
+	height: 40px;
 	display: flex;
 	flex-direction: row;
 	align-items:flex-start;
@@ -1110,6 +1117,8 @@ h6 {
 	position: relative;
 	text-align: center;
 	font-size: 2.5em;
-	left: -150px;
+	left: -160px;
 	margin-top: 50px;
 }
+
+/* --- Badges END --- */
