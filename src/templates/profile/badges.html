@@ -27,43 +27,83 @@
 				<div class="wrapper">
 					<nav class="navigation">
 						<span id="brand">
-							<a href="/">
+							<a href="index.html">
 								<img src="/static/img/logo/LogoNoBackground.png" width="70vmin" alt="">
 								<p>SUSTAINABLE GARDEN</p>
 							</a>
 						</span>
 
 						<ul id="menu">
-							<li><a href="/profile/badges" class="cool-link">Badges</a></li>
-							<li><a href="/profile/stats" class="cool-link">Statistics</a></li>
-							<li><a href="/profile/leaderboard" class="cool-link">Leaderboard</a></li>
-							<li><a href="/profile" class="cool-link">Awa</a></li>
+							<li><a href="badges.html" class="cool-link">Badges</a></li>
+							<li><a href="statistics.html" class="cool-link">Statistics</a></li>
+							<li><a href="leaderboard.html" class="cool-link">Leaderboard</a></li>
+							<li><a href="profile.html" class="cool-link">Awa</a></li>
 						</ul>
 					</nav>
 					<div class="badge-group">
-						<h2>Acquired</h2>
+						<h1 class="segment-description">
+							Acquired
+						</h1>
 						<ul>
-                            {% for badge in badges %}
 							<li class="oval-badge">
-                                <img src="{{ badge.path }}" height="80" width ="80" alt="" class="left-aligned">
-                                {{ badge.description }}
-                            </li>
+								<img src="/static/img/badges/bush_badge.png" height="80" width ="80" alt="" class="left-aligned">
+								<h2 class="badge-name">
+									Tree badge
+								</h2>
+								<h3 class="badge-description">
+									(Plant first tree)
+								</h3>
 
-                            {% endfor %}
+							</li>
+							<li class="oval-badge">
+								<img src="/static/img/badges/water_badge.png" height="80" width ="80" alt="" class="left-aligned">
+								<h2 class="badge-name">
+									Water badge
+								</h2>
+								<h3 class="badge-description">
+									(Water your plants for 100 days)
+								</h3>
+							</li>
 						</ul>
 					</div>
-					<div class="badge-group">
-						<h2>Still to explore</h2>
+					<div class="badge-group bottom-group">
+						<h1 class="list-description">
+							Still to explore
+						</h1>
 						<ul>
-							<li class="oval-badge">Segment 3</li>
-							<li class="oval-badge">Segment 4</li>
-							<li class="oval-badge">Segment 5</li>
+							<li class="oval-badge">
+								<img src="/static/img/badges/fruit_tree_badge.png" height="80" width ="80" alt="" class="left-aligned">
+								<h2 class="badge-name">
+									Fruit badge
+								</h2>
+								<h3 class="badge-description">
+									(Plant 100 fruit plants)
+								</h3>
+							</li>
+							<li class="oval-badge">
+								<img src="/static/img/badges/rhododendron_badge.png" height="80" width ="80" alt="" class="left-aligned">
+								<h2 class="badge-name">
+									Rhododendron badge
+								</h2>
+								<h3 class="badge-description">
+									(Absorb 1kg of CO2 with your garden)
+								</h3>
+							</li>
+							<li class="oval-badge">
+								<img src="/static/img/badges/forest_badge_1.png" height="80" width ="80" alt="" class="left-aligned">
+								<h2 class="badge-name">
+									Forest badge
+								</h2>
+								<h3 class="badge-description">
+									(Plant 10 trees)
+								</h3>
+							</li>
 						</ul>
 					</div>
 				</div>
 				<footer class="footer">
 					<h1 class="footing footer__item">
-						Collabathon 2023
+						Collabothon 2023
 					</h1>
 					<h1 class="footing footer__item">
 						✨🌟💖💎🦄💎💖🌟✨🌟💖💎🦄💎💖🌟✨
