@@ -36,25 +36,24 @@
 
 						<ul id="menu">
 							<li><a href="/profile/badges" class="cool-link">Badges</a></li>
-							<li><a href="/profile/stats" class="cool-link">Statistics</a></li>
+							<li><a href="/profile/stats" class="cool-link">Offers</a></li>
 							<li><a href="/profile/leaderboard" class="cool-link">Leaderboard</a></li>
 							<li><a href="/profile" class="avatar"><i class="fas fa-user-circle"></i></a></li>
 						</ul>
 					</nav>
 				</div>
 				<br>
-				<div style="display: flex; flex-direction: row; align-self: auto;">
-					{% for plt in plot %}
-					<div>{{plt|safe}}</div>
-					{% endfor %}
-				</div>
+				<br>
+				<br>
 				<br>
 				<h1>Recommended plants for your garden:</h1>
 				{% for plant in recommended_plants: %}
 				<div id="recommended_plant">
-					<h3>{{ plant[1] }}</h3>
-					<h4>CO2 absorbsion: {{ plant[2] }}</h4>
-					<h4>Oxygen emission: {{ plant[3] }}</h4>
+					<h1>{{ plant[1] }}:</h1>
+					<ul>
+						<li>CO2 absorbsion: {{ plant[2] }}</li>
+						<li>Oxygen emission: {{ plant[3] }}</li>
+					</ul>
 				</div>
 				{% endfor %}
 
