@@ -1,19 +1,20 @@
-from sklearn.feature_extraction.text import CountVectorizer
+import numpy as np
 
+from database.utils import get_all_plants_from_db
 from .recommender_model import Model
 
 
 def get_model(sql_data) -> Model:
     data = {}
+    num_of_plants = max(get_all_plants_from_db(), key=lambda x: x[1])
+
     for el in sql_data:
         if el[0] in data:
-            data[el[0]].append(str(el[1]))
+            data[el[0]][el[1]] += 1
         else:
-            data[el[0]] = [str(el[1])]
-    x_text = [" ".join(sublist) for sublist in data.values()]
+            data[el[0]] = np.zeros(num_of_plants[0]*2)
+            data[el[0]][el[1]] = 1
+    m = Model(data)
+    m.train()
+    return m
 
-    count_vectorizer = CountVectorizer(token_pattern=r"\b\d+\b")
-    data_matrix = count_vectorizer.fit_transform(x_text).toarray()
-    for i, k in enumerate(data):
-        data[k] = data_matrix[i]
-    return Model(data)
