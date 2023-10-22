@@ -52,12 +52,19 @@ def profile(request: Request):
         {"request": request, "badges": user_badges},
     )
 
+@router.post("/")
+def profile_
+
 
 @router.get("/stats")
 def profile_stats(request: Request):
-    return templates.TemplateResponse("profile/stats.html", {"request": request})
+    return templates.TemplateResponse("statistics.html", {"request": request})
 
 
 @router.get("/badges")
 def profile_badges(request: Request):
-    return templates.TemplateResponse("profile/badges.html", {"request": request})
+    user = request.session.get('user')
+    if not user:
+        return RedirectResponse('/login')
+    user_badges = get_user_badge(user['id'])
+    return templates.TemplateResponse("badges.html", {"request": request, "badges": user_badges})
