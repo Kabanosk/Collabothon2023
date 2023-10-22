@@ -22,8 +22,10 @@ def profile(request: Request):
     recommended_plants = None
     if user['id'] in model.data:
         user_vec = model.data[user['id']]
-        recommended_users = model.get_recommended_users(user_vec.reshape((1, -1)))
-        keys = [list(model.data.keys())[i] for i in sorted(recommended_users[0])]
+        recommended_users = model.get_recommended_users(
+            user_vec.reshape((1, -1)))
+        keys = [list(model.data.keys())[i]
+                for i in sorted(recommended_users[0])]
         ids = [np.nonzero(model.data[u])[0] for u in keys]
 
         recommended_plants_id = set(np.concatenate(ids)).difference(
@@ -38,19 +40,31 @@ def profile(request: Request):
     user_badges = get_user_badge(user['id'])
     return templates.TemplateResponse(
         "profile.html",
-        {"request": request,"recommended_plants":recommended_plants, "badges": user_badges},
+        {"request": request, "recommended_plants": recommended_plants,
+            "badges": user_badges},
     )
 
 
 @router.get("/stats")
 def profile_stats(request: Request):
+    user = request.session.get('user')
+    if not user:
+        return RedirectResponse('/login', status_code=status.HTTP_303_SEE_OTHER)
     return templates.TemplateResponse("statistics.html", {"request": request})
+
+
+@router.get("/leaderboard")
+def profile_stats(request: Request):
+    user = request.session.get('user')
+    if not user:
+        return RedirectResponse('/login', status_code=status.HTTP_303_SEE_OTHER)
+    return templates.TemplateResponse("leaderboard.html", {"request": request})
 
 
 @router.get("/badges")
 def profile_badges(request: Request):
     user = request.session.get('user')
     if not user:
-        return RedirectResponse('/login',status_code=status.HTTP_303_SEE_OTHER)
+        return RedirectResponse('/login', status_code=status.HTTP_303_SEE_OTHER)
     user_badges = get_user_badge(user['id'])
     return templates.TemplateResponse("badges.html", {"request": request, "badges": user_badges})

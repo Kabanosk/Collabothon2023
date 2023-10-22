@@ -8,7 +8,7 @@ from database.utils import add_user, get_user_by_username
 from validation import valid_email, valid_password
 
 router = APIRouter()
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="templates/auth")
 
 
 @router.get("/register", response_class=HTMLResponse)
