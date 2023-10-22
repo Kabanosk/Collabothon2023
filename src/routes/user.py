@@ -80,7 +80,7 @@ def profile_stats(request: Request):
 									{
 										"request": request,
 										"plot": [html_graph1, html_graph2],
-										"recommended_plants": recommended_plants
+										"recommended_plants": recommended_plants[:10]
 									})
 
 
