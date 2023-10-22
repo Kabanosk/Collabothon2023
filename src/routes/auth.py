@@ -4,7 +4,7 @@ from fastapi import APIRouter, Form, Request, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from database.utils import add_user, data_for_model, get_user_by_username
+from database.utils import add_user, get_user_by_username
 from validation import valid_email, valid_password
 
 router = APIRouter()

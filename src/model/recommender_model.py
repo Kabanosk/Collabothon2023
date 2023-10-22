@@ -9,11 +9,7 @@ class Model:
         self.data = data
 
     def train(self):
-        self.model.fit(self.data)
-
-    def add_user(self, user_data: np.array):
-        self.data = np.vstack((self.data, user_data))
-        self.train()
+        self.model.fit(list(self.data.values()))
 
     def add_plant(self):
         n = len(self.data)

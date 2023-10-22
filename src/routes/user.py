@@ -33,14 +33,19 @@ def profile(request: Request):
     user = request.session.get("user")
     if not user:
         return RedirectResponse("/login", status_code=status.HTTP_303_SEE_OTHER)
-    user_vec = model.data[user["id"]]
-    recommended_users = model.get_recommended_users(user_vec)
 
-    recommended_plants_id = set(
-        x for x in [np.nonzero(model.data[u]) for u in recommended_users]
-    ).difference(set(np.nonzero(user_vec)))
+    user_vec = model.data[user['id']]
+    recommended_users = model.get_recommended_users(user_vec.reshape((1, -1)))
+    keys = [list(model.data.keys())[i] for i in sorted(recommended_users[0])]
+    ids = [np.nonzero(model.data[u])[0] for u in keys]
+
+    recommended_plants_id = set(np.concatenate(ids)).difference(set(list(np.nonzero(user_vec)[0])))
     plants = np.array(get_all_plants_from_db())
-    recommended_plants = plants[recommended_plants_id]
+    plants_d = {}
+    for arr in plants:
+        plants_d[arr[0]] = arr
+
+    recommended_plants = [plants_d[x] for x in recommended_plants_id]
 
     return templates.TemplateResponse(
         "profile/main.html",
