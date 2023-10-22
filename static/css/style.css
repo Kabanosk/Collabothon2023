@@ -323,6 +323,23 @@ a {
 	transition: width .3s;
 }
 
+.avatar {
+	/* display: block; */
+	/* position: relative; */
+	/* top: -20px; */
+	/* font-size: 1.5em; */
+}
+
+.avatar::after
+{
+	background: #fff;
+}
+
+.avatar:hover {
+	width: 100%;
+	transition: width .3s;
+}
+
 .navigation {
 	/* width: 100vw; */
 	width: 100%;

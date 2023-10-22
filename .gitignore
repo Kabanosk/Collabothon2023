@@ -2,6 +2,9 @@
 __pycache__/
 .env
 
+/venv
+/src/model.pkl
+
 /static/css/flatpickr.css
 /static/css/tailwind.config.js
 /static/css/utility-patterns.css
