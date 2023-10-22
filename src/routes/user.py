@@ -5,7 +5,7 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from database.utils import get_all_plants_from_db, get_user_badge, get_user_by_username
+from database.utils import get_all_plants_from_db, get_user_badge, get_user_by_username, get_plant_stats
 from model import Model
 
 router = APIRouter()
@@ -50,6 +50,19 @@ def profile_stats(request: Request):
     user = request.session.get('user')
     if not user:
         return RedirectResponse('/login', status_code=status.HTTP_303_SEE_OTHER)
+    xs = []
+    ys =[]
+    zs = []
+    co2_cnt = 0
+    o2_cnt = 0
+    plant_stats = get_plant_stats(user['id'])
+    
+    if plant_stats:
+        for date,co2_abs,o2_emm in plant_stats:
+            co2_cnt+=co2_abs
+            o2_cnt+=o2_emm
+
+
     return templates.TemplateResponse("statistics.html", {"request": request})
 
 
