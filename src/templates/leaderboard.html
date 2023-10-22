@@ -44,13 +44,6 @@
 				</div>
 
 				<div class="l-wrapper" id="wrapper"></div>
-				<!-- <div class="c-drawer" id="drawer"> -->
-				<!-- <div class="c-swipe-zone" id="swipeZone"></div> -->
-				<!-- <div class="c-drawer__handle"></div> -->
-				<!-- <h4>Settings</h4><button class="c-toggle" id="test"> -->
-				<!-- <div class="c-toggle__handle"></div> -->
-				<!-- </button> -->
-				<!-- </div> -->
 
 				<footer class="footer">
 					<h1 class="footing footer__item">
@@ -70,8 +63,6 @@
 		// Containers
 		const wrapper = document.getElementById('wrapper');
 		const header = document.getElementById('header');
-		const drawer = document.getElementById('drawer');
-		const swipeZone = document.getElementById('swipeZone');
 
 		// Create Element
 		const createNode = element => {
@@ -81,34 +72,6 @@
 		// Append Element
 		const append = (parent, el) => {
 			return parent.appendChild(el);
-		}
-
-		// Toggle Drawer
-
-		const closeDrawer = () => {
-			document.querySelector('.c-overlay').style.opacity = 0;
-			drawer.classList.remove('c-drawer--open');
-			setTimeout(() => {
-				document.querySelector('.c-overlay').remove();
-			}, 50)
-		}
-
-		const openDrawer = () => {
-			let newOverlay = createNode('div');
-			newOverlay.classList = 'c-overlay';
-			newOverlay.style.opacity = 0;
-			newOverlay.addEventListener('click', closeDrawer);
-			append(document.body, newOverlay);
-			setTimeout(() => {
-				newOverlay.style.opacity = 1;
-				drawer.classList.add('c-drawer--open');
-			}, 100)
-		}
-
-		const toggleDrawer = () => {
-			drawer.classList.contains('c-drawer--open') ?
-				closeDrawer() :
-				openDrawer();
 		}
 
 		// Render Empty State
@@ -136,8 +99,7 @@
 
 		// Render Standings
 		const renderList = (year) => {
-			// const url = `https://ergast.com/api/f1/${year}/PersonStandings.json`; // TODO:
-			const url = `/static/data/leaderboard.json`; // TODO:
+			const url = `/static/data/leaderboard.json`;
 			emptyState();
 			fetch(url)
 				.then(response => {
@@ -214,49 +176,7 @@
 				})
 		}
 
-		// // Theme toggle
-		// document.getElementById('test').addEventListener('click', () => {
-		// 	document.documentElement.classList.toggle('theme--dark')
-		// 	document.getElementById('test').classList.toggle('c-toggle--active')
-		// })
-
-		// Create season select
-		const createSeasonSelect = () => {
-			const newSelect = createNode('div');
-			newSelect.innerHTML = `
-		<label class="c-field__label">Season:</label>
-		<select class="c-field__input"></select>
-	`;
-			newSelect.classList = 'c-field';
-			newSelect.style.position = 'relative';
-			newSelect.style.zIndex = 300;
-			let currentYear = new Date().getFullYear();
-			for (let i = 0; i < 20; i++) {
-				let itemYear = currentYear - i;
-				let newOption = createNode('option');
-				if (i == 0) {
-					newOption.setAttribute('selected', true);
-					newOption.innerHTML = `${itemYear} (current)`;
-					newOption.setAttribute('value', 'current');
-				} else {
-					newOption.innerHTML = itemYear;
-					newOption.setAttribute('value', itemYear);
-				}
-				append(newSelect.querySelector('.c-field__input'), newOption);
-			}
-			newSelect.querySelector('.c-field__input').addEventListener('change', (e) => {
-				document.getElementById('wrapper').innerHTML = '';
-				renderList(e.target.value);
-				toggleDrawer();
-			})
-			append(drawer, newSelect);
-		}
-
-		// createSeasonSelect();
-
 		renderList('current');
-
-		// drawer.querySelector('.c-drawer__handle').addEventListener('click', toggleDrawer);
 	</script>
 </body>
 
