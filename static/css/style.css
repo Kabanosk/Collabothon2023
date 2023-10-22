@@ -130,13 +130,6 @@ h1 {
 	transform: scale(0.98);
 }
 
-.menu-icon {
-	width: 2.5rem;
-	height: 1.5rem;
-	display: inline-block;
-	cursor: pointer;
-}
-
 .header__item {
 	display: inline-block;
 }
@@ -1023,8 +1016,9 @@ h6 {
 
 .left-aligned
 {
-	margin-right: 10px;
-	float: left;
+	position: relative;
+	left: -10px;
+	top: -20px;
 }
 
 .segment-description
@@ -1037,18 +1031,19 @@ h6 {
 
 .badge-name
 {
-	font-size: 28px;
+	position: relative;
+	font-size: 25px;
 	font-weight: 900;
-	text-align: center;
-	align-self: flex-start;
+	top: -15px;
 }
 
 .badge-description
 {
-	margin-left: 100px;
+	position: relative;
 	font-size: 23px;
 	font-weight: 300;
-	text-align: center;
+	top: -17px;
+	left: 10px;
 	font-style: italic;
 }
 
@@ -1058,7 +1053,13 @@ h6 {
 	text-align: center;
 	font-size: 2.5em;
 	left: -160px;
-	margin-top: 50px;
+}
+
+.bottom-group
+{
+	position: relative;
+	top: -35px;
+	margin-bottom: 78px;
 }
 
 /* --- Badges END --- */
