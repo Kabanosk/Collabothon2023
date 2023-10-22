@@ -161,7 +161,7 @@
 		`;
 					const title = createNode('div');
 					title.classList = 'c-headline';
-					title.innerHTML = `<h4 class="c-headline__title"><small class="u-text--danger">Tournament</small><br />Standings <small class="u-text--secondary">(${year == 'current' ? new Date().getFullYear() : year})</small></h4><span class="c-chip ${year == 'current' ? 'c-chip--success' : 'c-chip--secondary'}">Tournament ${year == 'current' ? 'in Progress' : 'Completed'}</span>`;
+					title.innerHTML = `<h4 class="c-headline__title"><small class="u-text--danger">Challenge</small><br />Standings <small class="u-text--secondary">(${year == 'current' ? new Date().getFullYear() : year})</small></h4><span class="c-chip ${year == 'current' ? 'c-chip--success' : 'c-chip--secondary'}">Challenge ${year == 'current' ? 'in Progress' : 'Completed'}</span>`;
 					append(wrapper, title);
 					append(wrapper, table);
 					data.MRData.StandingsTable.StandingsLists[0].PersonStandings.forEach(item => {
