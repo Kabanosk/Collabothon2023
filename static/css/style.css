@@ -462,48 +462,6 @@ a {
 	}
 }
 
-.badge-group
-{
-	/* display: flex; */
-	position: relative;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
-	height: 30vh;
-	margin: 20px;
-	left: 200px;
-}
-
-.oval-badge
-{
-	background-color: #1ff; /* to change */
-	color: #000; /* to change */
-	border: 5px red; /* to change */
-	border-style: solid;
-	border-radius: 20px;
-	padding: 20px;
-	margin: 10px 0;
-	font-size: 24px;
-	font-weight: 900;
-	width: 800px;
-	height: 70px;
-	display: flex;
-	flex-direction: row;
-	align-items:flex-start;
-}
-
-.badge-group ul
-{
-	list-style: none;
-	padding: 0;
-}
-
-.left-aligned
-{
-	margin-right: 10px;
-	float: left;
-}
-
 html {
 	--black: 0;
 	--white: 255;
@@ -1079,6 +1037,57 @@ h6 {
 	margin: 8px;
 }
 
+
+.badge-group
+{
+	/* display: flex; */
+	position: relative;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	height: 30vh;
+	margin: 20px;
+	left: 200px;
+}
+
+.oval-badge
+{
+	background-color: #1ff; /* to change */
+	color: #000; /* to change */
+	border: 5px red; /* to change */
+	border-style: solid;
+	border-radius: 20px;
+	padding: 20px;
+	margin: 10px 0;
+	font-size: 24px;
+	font-weight: 900;
+	width: 800px;
+	height: 70px;
+	display: flex;
+	flex-direction: row;
+	align-items:flex-start;
+}
+
+.badge-group ul
+{
+	list-style: none;
+	padding: 0;
+}
+
+.left-aligned
+{
+	margin-right: 10px;
+	float: left;
+}
+
+.segment-description
+{
+	position: relative;
+	text-align: center;
+	left: -400px;
+	font-size: 2.5em;
+}
+
 .badge-name
 {
 	font-size: 28px;
@@ -1099,8 +1108,8 @@ h6 {
 .list-description
 {
 	position: relative;
-	font-size:30px;
 	text-align: center;
-	padding-right: 300px;
-	margin-top: 40px;
+	font-size: 2.5em;
+	left: -150px;
+	margin-top: 50px;
 }
