@@ -128,7 +128,7 @@
 						{
 							"position": "9",
 							"positionText": "9",
-							"points": "240",
+							"points": "40",
 							"Person": {
 								"givenName": "Paweł",
 								"familyName": "Kojma"
@@ -142,7 +142,7 @@
 						{
 							"position": "10",
 							"positionText": "10",
-							"points": "122",
+							"points": "32",
 							"Person": {
 								"givenName": "Wojciech",
 								"familyName": "Fiołka"
