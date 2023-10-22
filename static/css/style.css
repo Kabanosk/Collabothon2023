@@ -908,45 +908,6 @@ h6 {
 		transform: rotate(359deg);
 	}
 }
-/*
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes drawerClose {
-	0% {
-		transform: translate(-50%, 24px);
-	}
-
-	40% {
-		transform: translate(-50%, 0px);
-	}
-
-	100% {
-		transform: translate(-50%, 276px);
-	}
-}
-
-@keyframes drawerOpen {
-	0% {
-		transform: translate(-50%, 276px);
-	}
-
-	40% {
-		transform: translate(-50%, 300px);
-	}
-
-	100% {
-		transform: translate(-50%, 24px);
-	}
-} */
-
 
 /* --- Leaderboard END --- */
 
