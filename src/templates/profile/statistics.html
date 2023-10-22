@@ -42,11 +42,23 @@
 						</ul>
 					</nav>
 				</div>
-                <div style="display: flex; flex-direction: row; align-self: auto;">
-                {% for plt in plot %}
-                <div>{{plt|safe}}</div>
-                {% endfor %}
-                </div>
+				<br>
+        <div style="display: flex; flex-direction: row; align-self: auto;">
+          {% for plt in plot %}
+            <div>{{plt|safe}}</div>
+          {% endfor %}
+        </div>
+				<br>
+				<h1>Recommended plants for your garden:</h1>
+				{% for plant in recommended_plants: %}
+					<div id="recommended_plant">
+						<h3>{{ plant[1] }}</h3>
+						<h4>CO2 absorbsion: {{ plant[2] }}</h4>
+						<h4>Oxygen emission: {{ plant[3] }}</h4>
+					</div>
+				{% endfor %}
+                
+        
 				<footer class="footer">
 					<h1 class="footing footer__item">
 						Collabothon 2023
