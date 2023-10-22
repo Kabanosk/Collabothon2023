@@ -47,14 +47,7 @@ def register_user(
     ph = PasswordHasher()
     h_pass = ph.hash(password)
     add_user(username, email, h_pass, 0)
-    new_user = get_user_by_username(username)
 
-    request.state.user = {
-        "id": new_user[0],
-        "username": new_user[1],
-        "email": new_user[2],
-        "password": new_user[3],
-    }
     return RedirectResponse("/login", status_code=status.HTTP_303_SEE_OTHER)
 
 

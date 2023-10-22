@@ -11,19 +11,6 @@ from model import Model
 router = APIRouter()
 templates = Jinja2Templates(directory="templates/profile")
 
-# Every function using this decorator
-# must accept fastapi.Request as 1st argument
-def auth_required(f):
-    @wraps(f)
-    def check_session(*args, **kwargs):
-        request = kwargs['request']
-        print([i for i in request.items()])
-        if not request.session.get("user"):
-            return RedirectResponse("/login")
-        f(*args, **kwargs)
-
-    return check_session
-
 
 @router.get("/")
 def profile(request: Request):
@@ -36,7 +23,8 @@ def profile(request: Request):
     keys = [list(model.data.keys())[i] for i in sorted(recommended_users[0])]
     ids = [np.nonzero(model.data[u])[0] for u in keys]
 
-    recommended_plants_id = set(np.concatenate(ids)).difference(set(list(np.nonzero(user_vec)[0])))
+    recommended_plants_id = set(np.concatenate(ids)).difference(
+        set(list(np.nonzero(user_vec)[0])))
     plants = np.array(get_all_plants_from_db())
     plants_d = {}
     for arr in plants:
@@ -44,16 +32,11 @@ def profile(request: Request):
 
     recommended_plants = [plants_d[x] for x in recommended_plants_id]
 
-
-    user = request.session.get("user")
     user_badges = get_user_badge(user['id'])
     return templates.TemplateResponse(
         "profile.html",
         {"request": request, "badges": user_badges},
     )
-
-@router.post("/")
-def profile_
 
 
 @router.get("/stats")
