@@ -22,7 +22,7 @@ def add_to_inventory(
     photo_id = 0
     plant = get_plant_by_name(name)
     if not plant:
-        return templates.TemplateResponse('profile/main.html',
+        return templates.TemplateResponse('profile/profile.html',
                                           {"request": request, "message": "Bad plant name"})
     add_plant_to_inventory(user_id, plant[0], photo_id, age=age)
     model = Model.load()

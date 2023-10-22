@@ -47,14 +47,7 @@ def register_user(
     ph = PasswordHasher()
     h_pass = ph.hash(password)
     add_user(username, email, h_pass, 0)
-    new_user = get_user_by_username(username)
 
-    request.state.user = {
-        "id": new_user[0],
-        "username": new_user[1],
-        "email": new_user[2],
-        "password": new_user[3],
-    }
     return RedirectResponse("/login", status_code=status.HTTP_303_SEE_OTHER)
 
 
@@ -81,13 +74,13 @@ def login_user(request: Request, username: str = Form(""), password: str = Form(
             "login.html", {"request": request, "message": "Bad password"}
         )
 
-    request.state.user = {
+    request.session['user'] = {
         "id": user[0],
         "username": user[1],
         "email": user[2],
         "password": user[3],
     }
-    return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse("/profile", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @router.get("/logout")
