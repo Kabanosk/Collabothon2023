@@ -10,8 +10,8 @@ pool = connect_with_connector()
 
 def get_plant_stats(user_id):
     with pool.connect() as conn:
-        query = select(Inventory.creation_date, Plant.co2_absorbtion, Plant.oxygen_emission).
-        join(Plant, Plant.id == Inventory.plant_id).
+        query = select(Inventory.creation_date, Plant.co2_absorbtion, Plant.oxygen_emission).\
+        join(Plant, Plant.id == Inventory.plant_id).\
         where(Inventory.user_id == user_id).order_by(Inventory.creation_date.asc())
         result = conn.execute(query).fetchall()
     return result

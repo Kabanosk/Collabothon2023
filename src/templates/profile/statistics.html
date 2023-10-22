@@ -42,7 +42,11 @@
 						</ul>
 					</nav>
 				</div>
-
+                <div style="display: flex; flex-direction: row; align-self: auto;">
+                {% for plt in plot %}
+                <div>{{plt|safe}}</div>
+                {% endfor %}
+                </div>
 				<footer class="footer">
 					<h1 class="footing footer__item">
 						Collabothon 2023
